@@ -12,19 +12,61 @@ public class PipeManager : MonoBehaviour
     [SerializeField]
     GameObject gridObj;
     [SerializeField]
-    GridLayoutGroup grid;
+    Transform gridT;
+    [SerializeField]
+    Transform nextT;
+    [SerializeField]
+    Sprite[] pipes;
+    List<GameObject> gridObjs = new List<GameObject>();
 
-    [ContextMenu("Test")]
+    void Start()
+    {
+        SpawnGrid();
+        SpawnNextColumn();
+    }
+
     void SpawnGrid()
     {
-        grid.constraintCount = height;
         for(int i = 0; i < width; i++)
         {
             for(int j = 0; j < height; j++)
             {
-                Instantiate(gridObj, grid.transform);
+                GameObject newGridObj = Instantiate(gridObj, gridT);
+                gridObjs.Add(newGridObj);
+                newGridObj.GetComponent<RectTransform>().localPosition += Vector3.right * newGridObj.GetComponent<RectTransform>().rect.width * i
+                + Vector3.down * newGridObj.GetComponent<RectTransform>().rect.height * j;
+                if(i == 0 && j == height - 1)
+                {
+                    int random = Random.Range(0, 2);
+                    newGridObj.GetComponent<Image>().sprite = pipes[random];
+                    newGridObj.GetComponent<SingleGrid>().SetLogic(random);
+                }
+                if(i == width - 1 && j == 0)
+                {
+                    int random = Random.Range(0, 2);
+                    newGridObj.GetComponent<Image>().sprite = pipes[random];
+                    newGridObj.GetComponent<SingleGrid>().SetLogic(random);
+                    if(random == 0)
+                    {
+                        newGridObj.GetComponent<SingleGrid>().RotatePipe();
+                    }
+                }
             }
         }
-        Vector2 topLeft;
+    }
+
+    void SpawnNextColumn()
+    {
+        for(int i = 0; i < 4; i++)
+        {
+            GameObject newGridObj = Instantiate(gridObj, nextT);
+            int random = Random.Range(0, 3);
+            newGridObj.GetComponent<Image>().sprite = pipes[random];
+            newGridObj.GetComponent<SingleGrid>().SetLogic(random);
+            for(int j = 0; j < random; j++)
+            {
+                newGridObj.GetComponent<SingleGrid>().RotatePipe();
+            }
+        }
     }
 }
