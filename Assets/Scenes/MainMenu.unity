@@ -866,6 +866,11 @@ PrefabInstance:
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 3354343826222018782, guid: 59b9d449a4980bc478b24318ff3a6ada,
+        type: 3}
+      propertyPath: glitchMat
+      value: 
+      objectReference: {fileID: 2100000, guid: 9791737167a916842bef49045cac05bc, type: 2}
     - target: {fileID: 3354343826222018783, guid: 59b9d449a4980bc478b24318ff3a6ada,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -985,6 +990,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7433952164058603778, guid: 59b9d449a4980bc478b24318ff3a6ada,
+        type: 3}
+      propertyPath: m_Material
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59b9d449a4980bc478b24318ff3a6ada, type: 3}
