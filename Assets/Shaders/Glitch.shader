@@ -35,6 +35,7 @@ Shader "Custom/Glitch"
 		[MaterialToggle] _WrapDispCoords ("Wrap disp glitch (off = clamp)", Float) = 1
 		[MaterialToggle] _DispGlitchOn ("Displacement Glitch On", Float) = 1
 		[MaterialToggle] _ColorGlitchOn ("Color Glitch On", Float) = 1
+		_RandValue ("Randomization value", Float) = 1
 	}
 
 	SubShader
@@ -110,11 +111,12 @@ Shader "Custom/Glitch"
 			float _DispGlitchOn;
 			float _ColorGlitchOn;
 			float _WrapDispCoords;
+			float _RandValue;
 			fixed4 frag(v2f IN) : SV_Target
 			{
 				//This ensures that the shader only generates new random variables every [_GlitchInterval] seconds, e.g. every 0.5 seconds
 				//During each interval the value wether the glitch occurs and how much the sprites glitches stays the same
-				float intervalTime = floor(_Time.y / _GlitchInterval) * _GlitchInterval;
+				float intervalTime = floor(_Time.y / _GlitchInterval) * _GlitchInterval + _RandValue;
 
 				//Second value increased by arbitrary number just to get more possible different random values
 				float intervalTime2 = intervalTime + 2.793;
@@ -236,7 +238,7 @@ Shader "Custom/Glitch"
 			sampler2D _MainTex;
 			
 			float rand(float x, float y){
-				return frac(sin(x*12.9898 + y*78.233)*43758.5453);
+				return frac(sin(x*12.9898 + y*78.233)*43758.5453 + _RandValue);
 			}
 			
 			float _DispIntensity;
@@ -247,7 +249,7 @@ Shader "Custom/Glitch"
 
 			fixed4 frag(v2f IN) : SV_Target
 			{
-				float intervalTime = floor(_Time.y / _GlitchInterval) * _GlitchInterval;
+				float intervalTime = floor(_Time.y / _GlitchInterval) * _GlitchInterval + _RandValue;
 				float timePositionVal = float(intervalTime + UNITY_MATRIX_MV[0][3] + UNITY_MATRIX_MV[1][3]);
 				float timeRandom = rand(timePositionVal, -timePositionVal);
 				if(timeRandom < _DispProbability && _DispGlitchOn == 1){
