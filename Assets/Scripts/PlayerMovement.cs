@@ -36,21 +36,23 @@ public class PlayerMovement : MonoBehaviour
         if (Controller.Rigidbody2D.velocity.magnitude > 0f)
         {
             isMoving = true;
-            anim.SetBool("moving", isMoving);//play moving animation
         }
         else
         {
             isMoving = false;
-            anim.SetBool("moving", isMoving);
+            
         }
 
         if (Controller.Rigidbody2D.velocity.magnitude > 0.1f)//play dust if magnitude is more than 0.1
         {
             playDust = true;
+            //play moving animation
+            anim.SetBool("moving", true);
         }
         else if (playDust && Controller.Rigidbody2D.velocity.magnitude < 0.1f)//don't play dust if magnitude is less than .1f
         {
             playDust = false;
+            anim.SetBool("moving", false);
         }
 
         if (DustParticle.isStopped && playDust)
