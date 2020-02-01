@@ -72,12 +72,12 @@ public class SingleGrid : MonoBehaviour
             sides[i] = sides[i + 1];
         }
         sides[3] = start;
-        Debug.Log("ROTATE: " + sides[0] + "|" + sides[1] + "|" + sides[2] + "|" + sides[3] + "X: " + x + "| Y: " + y);
+        // Debug.Log("ROTATE: " + sides[0] + "|" + sides[1] + "|" + sides[2] + "|" + sides[3] + "X: " + x + "| Y: " + y);
     }
 
     void ClickEvent()
     {
-        Debug.Log("CLICK: " + sides[0] + "|" + sides[1] + "|" + sides[2] + "|" + sides[3] + "X: " + x + "| Y: " + y);
+        // Debug.Log("CLICK: " + sides[0] + "|" + sides[1] + "|" + sides[2] + "|" + sides[3] + "X: " + x + "| Y: " + y);
         if(activity == GridActivity.Empty)
         {
             FindObjectOfType<PipeManager>().GetNextPipe(x, y, GetComponent<Image>(), this);
