@@ -4,12 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public enum Pipe {Straight, Curve, Cross}
-public enum GridActivity{Empty, HasPipe}
+public enum GridActivity{Empty, HasPipe, HasWater}
 
 public class SingleGrid : MonoBehaviour
 {
     // Left, Up, Right, Down
     public int[] sides = new int[4];
+    // 0 = left, 1 = top, 2 = right, 3 = down
+    public int flowingTo;
     public Pipe currentPipe;
     public GridActivity activity;
     public int numOfRotations;
@@ -70,13 +72,19 @@ public class SingleGrid : MonoBehaviour
             sides[i] = sides[i + 1];
         }
         sides[3] = start;
+        Debug.Log("ROTATE: " + sides[0] + "|" + sides[1] + "|" + sides[2] + "|" + sides[3] + "X: " + x + "| Y: " + y);
     }
 
     void ClickEvent()
     {
+        Debug.Log("CLICK: " + sides[0] + "|" + sides[1] + "|" + sides[2] + "|" + sides[3] + "X: " + x + "| Y: " + y);
         if(activity == GridActivity.Empty)
         {
             FindObjectOfType<PipeManager>().GetNextPipe(x, y, GetComponent<Image>(), this);
+        }
+        else if(activity == GridActivity.HasWater)
+        {
+            
         }
         else
         {
