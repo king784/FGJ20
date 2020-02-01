@@ -20,6 +20,8 @@ public class ZipperUp : MonoBehaviour
         if (slider.value == 3)
         {
             victoryPanel.SetActive(true);
+            picturePanels[(int)slider.value].SetActive(true);
+            picturePanels[(int)slider.value-1].SetActive(false);
             slider.enabled = false;
             return;
         }

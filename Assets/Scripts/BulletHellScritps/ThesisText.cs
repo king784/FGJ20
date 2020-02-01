@@ -17,6 +17,7 @@ public class ThesisText : MonoBehaviour
     public GameObject endPanel;
     public GameObject vicPanel;
     public GameObject consolePanel;
+    public GameObject fixText;
 
     bool Win = false;
 
@@ -110,6 +111,7 @@ public class ThesisText : MonoBehaviour
                     givenText.text = "";
                     rightWord = true;
                     nextWord++;
+                    fixText.SetActive(false);
                 }
             }
             else if (nextWord == 2)
@@ -120,6 +122,7 @@ public class ThesisText : MonoBehaviour
                     givenText.text = "";
                     rightWord = true;
                     nextWord++;
+                    fixText.SetActive(false);
                 }
             }
             else if (nextWord == 3)
@@ -130,6 +133,7 @@ public class ThesisText : MonoBehaviour
                     givenText.text = "";
                     rightWord = true;
                     nextWord++;
+                    fixText.SetActive(false);
                 }
             }
             else if (nextWord == 4)
@@ -139,6 +143,7 @@ public class ThesisText : MonoBehaviour
                     placeHolder.text = "";
                     rightWord = true;
                     nextWord++;
+                    fixText.SetActive(false);
                 }
             }
 
@@ -149,6 +154,7 @@ public class ThesisText : MonoBehaviour
                     placeHolder.text = "";
                     rightWord = true;
                     nextWord++;
+                    fixText.SetActive(false);
                 }
             }
             else if (nextWord == 6)
@@ -158,6 +164,7 @@ public class ThesisText : MonoBehaviour
                     placeHolder.text = "";
                     rightWord = true;
                     nextWord++;
+                    fixText.SetActive(false);
                 }
             }
             else if (nextWord == 7)
@@ -167,6 +174,7 @@ public class ThesisText : MonoBehaviour
                     placeHolder.text = "";
                     rightWord = true;
                     nextWord++;
+                    fixText.SetActive(false);
                 }
             }
             else if (nextWord == 8)
@@ -176,6 +184,7 @@ public class ThesisText : MonoBehaviour
                     placeHolder.text = "";
                     rightWord = true;
                     nextWord++;
+                    fixText.SetActive(false);
                 }
             }
             else if (nextWord == 9)
@@ -185,6 +194,7 @@ public class ThesisText : MonoBehaviour
                     placeHolder.text = "";
                     rightWord = true;
                     nextWord++;
+                    fixText.SetActive(false);
                 }
             }
             else if (nextWord == 10)
@@ -194,6 +204,7 @@ public class ThesisText : MonoBehaviour
                     placeHolder.text = "";
                     rightWord = true;
                     nextWord++;
+                    fixText.SetActive(false);
                 }
             }
             else if (nextWord == 11)
@@ -203,6 +214,7 @@ public class ThesisText : MonoBehaviour
                     placeHolder.text = "";
                     rightWord = true;
                     nextWord++;
+                    fixText.SetActive(false);
                 }
             }
             else if (nextWord == 12)
@@ -212,6 +224,7 @@ public class ThesisText : MonoBehaviour
                     placeHolder.text = "";
                     rightWord = true;
                     nextWord++;
+                    fixText.SetActive(false);
                 }
             }
             else if (nextWord == 13)
@@ -221,6 +234,7 @@ public class ThesisText : MonoBehaviour
                     placeHolder.text = "";
                     rightWord = true;
                     nextWord++;
+                    fixText.SetActive(false);
                 }
             }
             else if (nextWord == 14)
@@ -230,6 +244,7 @@ public class ThesisText : MonoBehaviour
                     placeHolder.text = "";
                     rightWord = true;
                     nextWord++;
+                    fixText.SetActive(false);
                 }
             }
             else if (nextWord == 15)
@@ -239,6 +254,7 @@ public class ThesisText : MonoBehaviour
                     placeHolder.text = "";
                     rightWord = true;
                     nextWord++;
+                    fixText.SetActive(false);
                 }
             }
             else if (nextWord == 16)
@@ -248,9 +264,10 @@ public class ThesisText : MonoBehaviour
                     placeHolder.text = "";
                     rightWord = true;
                     nextWord++;
+                    fixText.SetActive(false);
                 }
             }
-
+            inputField.text = "";
         }
 
     }
@@ -266,18 +283,21 @@ public class ThesisText : MonoBehaviour
                 if (i == 100)
                 {
                     placeHolder.text = inputs[0];
+                    fixText.SetActive(true);
                     yield return new WaitUntil(() => rightWord == true);
                     rightWord = false;
                 }
                 if (i == 200)
                 {
                     placeHolder.text = inputs[1];
+                    fixText.SetActive(true);
                     yield return new WaitUntil(() => rightWord == true);
                     rightWord = false;
                 }
                 if (i == 300)
                 {
                     placeHolder.text = inputs[2];
+                    fixText.SetActive(true);
                     yield return new WaitUntil(() => rightWord == true);
                     rightWord = false;
                 }
@@ -285,12 +305,14 @@ public class ThesisText : MonoBehaviour
                 if (i == 400)
                 {
                     placeHolder.text = inputs[3];
+                    fixText.SetActive(true);
                     yield return new WaitUntil(() => rightWord == true);
                     rightWord = false;
                 }
                 if (i == 500)
                 {
                     placeHolder.text = inputs[4];
+                    fixText.SetActive(true);
                     yield return new WaitUntil(() => rightWord == true);
                     rightWord = false;
                 }
@@ -299,60 +321,70 @@ public class ThesisText : MonoBehaviour
                 if (i == 600)
                 {
                     placeHolder.text = inputs[5];
+                    fixText.SetActive(true);
                     yield return new WaitUntil(() => rightWord == true);
                     rightWord = false;
                 }
                 if (i == 700)
                 {
                     placeHolder.text = inputs[6];
+                    fixText.SetActive(true);
                     yield return new WaitUntil(() => rightWord == true);
                     rightWord = false;
                 }
                 if (i == 800)
                 {
                     placeHolder.text = inputs[7];
+                    fixText.SetActive(true);
                     yield return new WaitUntil(() => rightWord == true);
                     rightWord = false;
                 }
                 if (i == 900)
                 {
                     placeHolder.text = inputs[8];
+                    fixText.SetActive(true);
                     yield return new WaitUntil(() => rightWord == true);
                     rightWord = false;
                 }
                 if (i == 1000)
                 {
                     placeHolder.text = inputs[9];
+                    fixText.SetActive(true);
                     yield return new WaitUntil(() => rightWord == true);
                     rightWord = false;
                 }
                 if (i == 1100)
                 {
                     placeHolder.text = inputs[10];
+                    fixText.SetActive(true);
                     yield return new WaitUntil(() => rightWord == true);
                     rightWord = false;
                 }
                 if (i == 1200)
                 {
                     placeHolder.text = inputs[11];
+                    fixText.SetActive(true);
                     yield return new WaitUntil(() => rightWord == true);
                     rightWord = false;
                 }
                 if (i == 1300)
                 {
                     placeHolder.text = inputs[12];
+                    fixText.SetActive(true);
                     yield return new WaitUntil(() => rightWord == true);
                     rightWord = false;
                 }
                 if (i == 1400)
                 {
                     placeHolder.text = inputs[13];
+                    fixText.SetActive(true);
                     yield return new WaitUntil(() => rightWord == true);
                     rightWord = false;
                 }
                 if (i == 1500)
                 {
                     placeHolder.text = inputs[14];
+                    fixText.SetActive(true);
                     yield return new WaitUntil(() => rightWord == true);
                     rightWord = false;
                 }
