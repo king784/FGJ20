@@ -144,7 +144,7 @@ public class PipeManager : MonoBehaviour
     public IEnumerator WaterFlowLoop()
     {
         yield return new WaitForSeconds(0.1f);
-        bool firstTime = true;
+        bool firstTime = false;
         bool playing = true;
         SingleGrid nextGrid = null;
         Material newPipeMat = Instantiate(waterPipeMat);
@@ -163,6 +163,7 @@ public class PipeManager : MonoBehaviour
                 lerp += Time.deltaTime * 0.2f;
                 yield return null;
             }
+            nextGrid.gameObject.GetComponent<Image>().material.SetFloat("_WaterValue", 0.0f);
             if(firstTime)
             {
                 if(startTile.GetComponent<SingleGrid>().flowingTo == 1)
@@ -187,7 +188,7 @@ public class PipeManager : MonoBehaviour
 
                 if(nextGrid.x == winX && nextGrid.y-1 == winY)
                 {
-                    Debug.Log("Win");
+                    Debug.Log("Win!");
                     playing = false;
                     break;
                 }
@@ -224,9 +225,13 @@ public class PipeManager : MonoBehaviour
                         if(nextGrid.sides[i] > 0)
                         {
                             nextGrid.flowingTo = i;
-                            if(nextGrid.sides[i] == 2)
+                            if(nextGrid.flowingTo == 2 && nextGrid.currentPipe == Pipe.Straight && nextGrid.GetComponent<RectTransform>().eulerAngles.z > 170.0f && nextGrid.GetComponent<RectTransform>().eulerAngles.z < 190.0f)
                             {
-                                nextGrid.gameObject.GetComponent<Image>().material.SetInt("_WaterValue", 1);
+                                nextGrid.gameObject.GetComponent<Image>().material.SetInt("_Direction", 1);
+                            }
+                            if(nextGrid.flowingTo == 2 && nextGrid.currentPipe == Pipe.Curve)
+                            {
+                                nextGrid.gameObject.GetComponent<Image>().material.SetInt("_Direction", 1);
                             }
                         }
                     }
@@ -241,9 +246,9 @@ public class PipeManager : MonoBehaviour
                         if(nextGrid.sides[i] > 0)
                         {
                             nextGrid.flowingTo = i;
-                            if(nextGrid.sides[i] == 2)
+                            if(nextGrid.flowingTo == 3 && nextGrid.currentPipe == Pipe.Curve)
                             {
-                                nextGrid.gameObject.GetComponent<Image>().material.SetInt("_WaterValue", 1);
+                                nextGrid.gameObject.GetComponent<Image>().material.SetInt("_Direction", 1);
                             }
                         }
                     }
@@ -258,9 +263,9 @@ public class PipeManager : MonoBehaviour
                         if(nextGrid.sides[i] > 0)
                         {
                             nextGrid.flowingTo = i;
-                            if(nextGrid.sides[i] == 2)
+                            if(nextGrid.flowingTo == 0 && nextGrid.currentPipe == Pipe.Curve)
                             {
-                                nextGrid.gameObject.GetComponent<Image>().material.SetInt("_WaterValue", 1);
+                                nextGrid.gameObject.GetComponent<Image>().material.SetInt("_Direction", 1);
                             }
                         }
                     }
@@ -275,9 +280,13 @@ public class PipeManager : MonoBehaviour
                         if(nextGrid.sides[i] > 0)
                         {
                             nextGrid.flowingTo = i;
-                            if(nextGrid.sides[i] == 2)
+                            if(nextGrid.flowingTo == 1 && nextGrid.currentPipe == Pipe.Straight && nextGrid.GetComponent<RectTransform>().eulerAngles.z > -80.0f && nextGrid.GetComponent<RectTransform>().eulerAngles.z < -100.0f)
                             {
-                                nextGrid.gameObject.GetComponent<Image>().material.SetInt("_WaterValue", 1);
+                                nextGrid.gameObject.GetComponent<Image>().material.SetInt("_Direction", 1);
+                            }
+                            if(nextGrid.flowingTo == 1 && nextGrid.currentPipe == Pipe.Curve)
+                            {
+                                nextGrid.gameObject.GetComponent<Image>().material.SetInt("_Direction", 1);
                             }
                         }
                     }
