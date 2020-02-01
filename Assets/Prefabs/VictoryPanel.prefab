@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9040598912560568095}
   - component: {fileID: 9040598912560568093}
+  - component: {fileID: 8073076881838646917}
   - component: {fileID: 9040598912560568094}
   m_Layer: 5
   m_Name: VictoryPanel
@@ -46,6 +47,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9040598912560568088}
   m_CullTransparentMesh: 0
+--- !u!114 &8073076881838646917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9040598912560568088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17184f8010cb02c49ac246bc28f6908a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &9040598912560568094
 MonoBehaviour:
   m_ObjectHideFlags: 0

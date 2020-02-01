@@ -15,6 +15,7 @@ public class LevelManager : MonoBehaviour
     Dictionary<string, bool> FixedGlitchedWorlds = new Dictionary<string, bool>();
     Dictionary<string, GameObject> AllGlitches = new Dictionary<string, GameObject>();
     float grade;
+    Vector3 playerPositionBeforeGlitch;
 
 
     private void Awake()
@@ -43,11 +44,6 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -59,6 +55,7 @@ public class LevelManager : MonoBehaviour
         {
             if (entry.Value == true)
             {
+                ClearGlitchedWorld(entry.Key);
                 GameObject glitchToRemove;
                 AllGlitches.TryGetValue(entry.Key, out glitchToRemove);//try and find a gameobject with the same key as the cleared world and return it to the glitchtoremove variable
                 if (glitchToRemove)//if the same object was found in allglitches
@@ -75,12 +72,18 @@ public class LevelManager : MonoBehaviour
         if (scene.name == "OverWorld")
         {
             checkFixedGlitches();
+            GameObject.FindGameObjectWithTag("Player").transform.position = playerPositionBeforeGlitch;
         }
     }
 
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    public void SavePlayerPosition()
+    {
+        playerPositionBeforeGlitch = GameObject.FindGameObjectWithTag("Player").transform.position;
     }
 
     public void GoToLevel(string levelName)

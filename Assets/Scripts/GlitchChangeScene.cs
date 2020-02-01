@@ -10,6 +10,7 @@ public class GlitchChangeScene : MonoBehaviour
 
     public void moveToGlitchedWorld()
     {
-        SceneManager.LoadScene(worldToGoto);
+        LevelManager.LevelMaster.SavePlayerPosition();
+        LevelManager.LevelMaster.GoToLevel(worldToGoto);
     }
 }
