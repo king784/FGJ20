@@ -5,6 +5,7 @@
         _MainTex ("Texture", 2D) = "white" {}
         _GradientTex("Gradient Texture", 2D) = "" {}
         _WaterValue ("Water value", Range(0.0, 1.0)) = 0.5
+        _Direction ("Direction", Int) = 0
     }
     SubShader
     {
@@ -42,6 +43,7 @@
             sampler2D _GradientTex;
             float4 _MainTex_ST;
             float _WaterValue;
+            int _Direction;
 
 
             v2f vert (appdata v)
@@ -58,9 +60,19 @@
                 // sample the texture
                 fixed4 col = tex2D(_MainTex, i.uv);
                 fixed4 gradCol = tex2D(_GradientTex, i.uv);
-                if(gradCol.r >_WaterValue)
+                if(_Direction == 0)
                 {
-                    col.b *= 3.0;
+                    if(gradCol.r > _WaterValue)
+                    {
+                        col.b *= 3.0;
+                    }
+                }
+                else if(_Direction == 1)
+                {
+                    if(gradCol.r > 1-_WaterValue)
+                    {
+                        col.b *= 3.0;
+                    }
                 }
                 return col;
             }
