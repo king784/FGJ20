@@ -6,8 +6,9 @@ using UnityEngine.UI;
 public class ZipperUp : MonoBehaviour
 {
     public Slider slider;
-    public GameObject togle;
     public GameObject victoryPanel;
+
+    public GameObject[] picturePanels;
 
     private void Update()
     {
@@ -16,10 +17,15 @@ public class ZipperUp : MonoBehaviour
 
     public void SetZipper()
     {
-       if(slider.value == 4)
+        if (slider.value == 3)
         {
-            slider.enabled = false;
             victoryPanel.SetActive(true);
+            slider.enabled = false;
         }
+
+        picturePanels[(int)slider.value].SetActive(true);
+
+        if(slider.value > 0)
+        picturePanels[(int)slider.value-1].SetActive(false);
     }
 }

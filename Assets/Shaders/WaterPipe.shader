@@ -60,20 +60,15 @@
                 // sample the texture
                 fixed4 col = tex2D(_MainTex, i.uv);
                 fixed4 gradCol = tex2D(_GradientTex, i.uv);
-                if(_Direction == 0)
+                if(_Direction == 1)
                 {
-                    if(gradCol.r > _WaterValue)
-                    {
-                        col.b *= 3.0;
-                    }
+                    gradCol = 1-gradCol;
                 }
-                else if(_Direction == 1)
+                if(gradCol.r > _WaterValue)
                 {
-                    if(gradCol.r > 1-_WaterValue)
-                    {
-                        col.b *= 3.0;
-                    }
+                    col.b *= 3.0;
                 }
+                
                 return col;
             }
             ENDCG
