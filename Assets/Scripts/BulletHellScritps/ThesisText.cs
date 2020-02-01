@@ -15,6 +15,7 @@ public class ThesisText : MonoBehaviour
     private string currentText = "";
 
     public GameObject endPanel;
+    public GameObject vicPanel;
     public GameObject consolePanel;
 
     bool Win = false;
@@ -372,5 +373,6 @@ public class ThesisText : MonoBehaviour
 
         speed += 0.7f * Time.deltaTime;
         endPanel.GetComponent<Image>().color = new Color(0,0,0,Mathf.Lerp(0,1,speed));
+        vicPanel.SetActive(true);
     }
 }
