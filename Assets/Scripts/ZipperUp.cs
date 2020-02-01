@@ -16,11 +16,10 @@ public class ZipperUp : MonoBehaviour
 
     public void SetZipper()
     {
-       if(slider.value == 0)
+       if(slider.value == 4)
         {
             slider.enabled = false;
             victoryPanel.SetActive(true);
         }
     }
-
 }
