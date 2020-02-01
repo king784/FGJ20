@@ -21,10 +21,14 @@ public class PipeManager : MonoBehaviour
     Texture[] pipeGradients;
     public List<GameObject> gridObjs = new List<GameObject>();
     public List<GameObject> nextObjs = new List<GameObject>();
+    public Material waterPipeMat;
+    GameObject startTile;
+    List<SingleGrid> gridBlocks = new List<SingleGrid>();
 
     // Water flowing variables
     int currentX;
     int currentY;
+    public int winX, winY;
 
     void Start()
     {
@@ -41,6 +45,7 @@ public class PipeManager : MonoBehaviour
             {
                 GameObject newGridObj = Instantiate(gridObj, gridT);
                 gridObjs.Add(newGridObj);
+                gridBlocks.Add(newGridObj.GetComponent<SingleGrid>());
                 newGridObj.GetComponent<SingleGrid>().SetPos(i, j);
                 newGridObj.GetComponent<RectTransform>().localPosition += Vector3.right * newGridObj.GetComponent<RectTransform>().rect.width * i
                 + Vector3.down * newGridObj.GetComponent<RectTransform>().rect.height * j;
@@ -50,8 +55,17 @@ public class PipeManager : MonoBehaviour
                     newGridObj.GetComponent<Image>().sprite = pipes[random];
                     newGridObj.GetComponent<Image>().material.SetTexture("_GradientTex", pipeGradients[random]);
                     newGridObj.GetComponent<SingleGrid>().SetLogic(random);
+                    if(random == 0)
+                    {
+                        newGridObj.GetComponent<SingleGrid>().flowingTo = 2;
+                    }
+                    else
+                    {
+                        newGridObj.GetComponent<SingleGrid>().flowingTo = 1;
+                    }
                     currentX = i;
                     currentY = j;
+                    startTile = newGridObj;
                 }
                 if(i == width - 1 && j == 0)
                 {
@@ -63,6 +77,7 @@ public class PipeManager : MonoBehaviour
                     {
                         newGridObj.GetComponent<SingleGrid>().RotatePipe();
                     }
+                    newGridObj.GetComponent<SingleGrid>().flowingTo = 1;
                 }
             }
         }
@@ -73,6 +88,7 @@ public class PipeManager : MonoBehaviour
         for(int i = 0; i < 4; i++)
         {
             GameObject newGridObj = Instantiate(gridObj, nextT);
+            gridBlocks.Add(newGridObj.GetComponent<SingleGrid>());
             int random = Random.Range(0, pipes.Length);
             newGridObj.GetComponent<Image>().sprite = pipes[random];
             newGridObj.GetComponent<Image>().material.SetTexture("_GradientTex", pipeGradients[random]);
@@ -92,16 +108,17 @@ public class PipeManager : MonoBehaviour
         // ridObjs[clickedX + width*clickedY].GetComponent<Image>().sprite
         img.sprite = nextT.GetChild(nextT.childCount-1).GetComponent<Image>().sprite;
         img.material.SetTexture("_GradientTex", nextT.GetChild(nextT.childCount-1).GetComponent<Image>().material.GetTexture("_GradientTex"));
+        g.SetLogic((int)nextT.GetChild(nextT.childCount-1).GetComponent<SingleGrid>().currentPipe);
         for(int i = 0; i < nextT.GetChild(nextT.childCount-1).GetComponent<SingleGrid>().numOfRotations; i++)
         {
             g.RotatePipe();
         }
-        g.SetLogic((int)nextT.GetChild(nextT.childCount-1).GetComponent<SingleGrid>().currentPipe);
         Destroy(nextT.GetChild(nextT.childCount-1).gameObject);
         // nextObjs.RemoveAt(nextObjs.Count - 1);
         
         // Add one to end, change it to start and change rest to +1
         GameObject newGridObj = Instantiate(gridObj, nextT);
+        gridBlocks.Add(newGridObj.GetComponent<SingleGrid>());
         // nextObjs.Add(newGridObj);
         int random = Random.Range(0, pipes.Length);
         newGridObj.GetComponent<Image>().sprite = pipes[random];
@@ -126,14 +143,163 @@ public class PipeManager : MonoBehaviour
 
     public IEnumerator WaterFlowLoop()
     {
-        yield return new WaitForSeconds(2.0f);
-        gridObjs[currentX + width*currentY].GetComponent<Image>().material.SetFloat("_WaterValue", 1);
+        yield return new WaitForSeconds(0.1f);
+        bool firstTime = true;
+        bool playing = true;
+        SingleGrid nextGrid = null;
+        Material newPipeMat = Instantiate(waterPipeMat);
+        startTile.GetComponent<Image>().material = newPipeMat;
+        startTile.GetComponent<Image>().material.SetTexture("_GradientTex", pipeGradients[1]);
+        startTile.GetComponent<Image>().material.SetFloat("_WaterValue", 1);
+        nextGrid = startTile.GetComponent<SingleGrid>();
         float lerp = 0.0f;
-        while(lerp < 1.0f)
+        while(playing)
         {
-            gridObjs[currentX + width*currentY].GetComponent<Image>().material.SetFloat("_WaterValue", 1.0f-lerp);
-            lerp += Time.deltaTime * 0.2f;
-            yield return null;
+            lerp = 0.0f;
+            nextGrid.activity = GridActivity.HasWater;
+            while(lerp < 1.0f)
+            {
+                nextGrid.gameObject.GetComponent<Image>().material.SetFloat("_WaterValue", 1.0f-lerp);
+                lerp += Time.deltaTime * 0.2f;
+                yield return null;
+            }
+            if(firstTime)
+            {
+                if(startTile.GetComponent<SingleGrid>().flowingTo == 1)
+                {
+                    nextGrid = GetCorrectGrid(startTile.GetComponent<SingleGrid>().x, startTile.GetComponent<SingleGrid>().y-1);
+                }
+                else if(startTile.GetComponent<SingleGrid>().flowingTo == 2)
+                {
+                    nextGrid = GetCorrectGrid(startTile.GetComponent<SingleGrid>().x+1, startTile.GetComponent<SingleGrid>().y);
+                }
+                startTile = nextGrid.gameObject;
+                Material newPipeMat2 = Instantiate(waterPipeMat);
+                Texture t = nextGrid.gameObject.GetComponent<Image>().material.GetTexture("_GradientTex");
+                nextGrid.gameObject.GetComponent<Image>().material = newPipeMat2;
+                nextGrid.gameObject.GetComponent<Image>().material.SetTexture("_GradientTex", pipeGradients[(int)nextGrid.currentPipe]);
+                nextGrid.gameObject.GetComponent<Image>().material.SetFloat("_WaterValue", 1);
+                firstTime = false;
+            }
+            else
+            {
+                startTile = nextGrid.gameObject;
+
+                if(nextGrid.x == winX && nextGrid.y-1 == winY)
+                {
+                    Debug.Log("Win");
+                    playing = false;
+                    break;
+                }
+
+                if(nextGrid.GetComponent<SingleGrid>().flowingTo == 0)
+                {
+                    nextGrid = GetCorrectGrid(nextGrid.GetComponent<SingleGrid>().x-1, nextGrid.GetComponent<SingleGrid>().y);
+                }
+                else if(nextGrid.GetComponent<SingleGrid>().flowingTo == 1)
+                {
+                    nextGrid = GetCorrectGrid(nextGrid.GetComponent<SingleGrid>().x, nextGrid.GetComponent<SingleGrid>().y-1);
+                }
+                else if(nextGrid.GetComponent<SingleGrid>().flowingTo == 2)
+                {
+                    nextGrid = GetCorrectGrid(nextGrid.GetComponent<SingleGrid>().x+1, nextGrid.GetComponent<SingleGrid>().y);
+                }
+                else if(nextGrid.GetComponent<SingleGrid>().flowingTo == 3)
+                {
+                    nextGrid = GetCorrectGrid(nextGrid.GetComponent<SingleGrid>().x, nextGrid.GetComponent<SingleGrid>().y+1);
+                }
+
+                Material newPipeMat2 = Instantiate(waterPipeMat);
+                nextGrid.gameObject.GetComponent<Image>().material = newPipeMat2;
+                nextGrid.gameObject.GetComponent<Image>().material.SetTexture("_GradientTex", pipeGradients[(int)nextGrid.currentPipe]);
+                nextGrid.gameObject.GetComponent<Image>().material.SetFloat("_WaterValue", 1);
+            }
+
+            if((nextGrid.sides[3] > 0 && startTile.GetComponent<SingleGrid>().sides[1] > 0))
+            {
+                for(int i = 0; i < 4; i++)
+                {
+                    if(i != 3)
+                    {
+                        if(nextGrid.sides[i] > 0)
+                        {
+                            nextGrid.flowingTo = i;
+                            if(nextGrid.sides[i] == 2)
+                            {
+                                nextGrid.gameObject.GetComponent<Image>().material.SetInt("_WaterValue", 1);
+                            }
+                        }
+                    }
+                }
+            }
+            else if(nextGrid.sides[0] > 0 && startTile.GetComponent<SingleGrid>().sides[2] > 0)
+            {
+                for(int i = 0; i < 4; i++)
+                {
+                    if(i != 0)
+                    {
+                        if(nextGrid.sides[i] > 0)
+                        {
+                            nextGrid.flowingTo = i;
+                            if(nextGrid.sides[i] == 2)
+                            {
+                                nextGrid.gameObject.GetComponent<Image>().material.SetInt("_WaterValue", 1);
+                            }
+                        }
+                    }
+                }
+            }
+            else if(nextGrid.sides[1] > 0 && startTile.GetComponent<SingleGrid>().sides[3] > 0)
+            {
+                for(int i = 0; i < 4; i++)
+                {
+                    if(i != 1)
+                    {
+                        if(nextGrid.sides[i] > 0)
+                        {
+                            nextGrid.flowingTo = i;
+                            if(nextGrid.sides[i] == 2)
+                            {
+                                nextGrid.gameObject.GetComponent<Image>().material.SetInt("_WaterValue", 1);
+                            }
+                        }
+                    }
+                }
+            }
+            else if(nextGrid.sides[2] > 0 && startTile.GetComponent<SingleGrid>().sides[0] > 0)
+            {
+                for(int i = 0; i < 4; i++)
+                {
+                    if(i != 2)
+                    {
+                        if(nextGrid.sides[i] > 0)
+                        {
+                            nextGrid.flowingTo = i;
+                            if(nextGrid.sides[i] == 2)
+                            {
+                                nextGrid.gameObject.GetComponent<Image>().material.SetInt("_WaterValue", 1);
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                playing = false;
+            }
         }
+        Debug.Log("Game over!");
+    }
+
+    SingleGrid GetCorrectGrid(int x, int y)
+    {
+        for(int i = 0; i < gridBlocks.Count-1; i++)
+        {
+            if(gridBlocks[i].x == x && gridBlocks[i].y == y)
+            {
+                return gridBlocks[i];
+            }
+        }
+        return null;
     }
 }
