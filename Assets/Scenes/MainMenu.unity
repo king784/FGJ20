@@ -856,10 +856,70 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1567938335523672648, guid: 59b9d449a4980bc478b24318ff3a6ada,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1567938335523672648, guid: 59b9d449a4980bc478b24318ff3a6ada,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1567938335523672648, guid: 59b9d449a4980bc478b24318ff3a6ada,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1567938335523672648, guid: 59b9d449a4980bc478b24318ff3a6ada,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1567938335523672648, guid: 59b9d449a4980bc478b24318ff3a6ada,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1669603938094566188, guid: 59b9d449a4980bc478b24318ff3a6ada,
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3354343826062123421, guid: 59b9d449a4980bc478b24318ff3a6ada,
+        type: 3}
+      propertyPath: m_text
+      value: Age of Glitch
+      objectReference: {fileID: 0}
+    - target: {fileID: 3354343826062123421, guid: 59b9d449a4980bc478b24318ff3a6ada,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 82
+      objectReference: {fileID: 0}
+    - target: {fileID: 3354343826062123421, guid: 59b9d449a4980bc478b24318ff3a6ada,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 3354343826062123421, guid: 59b9d449a4980bc478b24318ff3a6ada,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3354343826062123421, guid: 59b9d449a4980bc478b24318ff3a6ada,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3354343826062123421, guid: 59b9d449a4980bc478b24318ff3a6ada,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3354343826062123426, guid: 59b9d449a4980bc478b24318ff3a6ada,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 3354343826222018780, guid: 59b9d449a4980bc478b24318ff3a6ada,
         type: 3}
