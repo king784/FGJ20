@@ -17,7 +17,9 @@ public class PipeManager : MonoBehaviour
     Transform nextT;
     [SerializeField]
     Sprite[] pipes;
-    List<GameObject> gridObjs = new List<GameObject>();
+    [SerializeField]
+    Texture[] pipeGradients;
+    public List<GameObject> gridObjs = new List<GameObject>();
     public List<GameObject> nextObjs = new List<GameObject>();
 
     // Water flowing variables
@@ -28,6 +30,7 @@ public class PipeManager : MonoBehaviour
     {
         SpawnGrid();
         SpawnNextColumn();
+        StartCoroutine(WaterFlowLoop());
     }
 
     void SpawnGrid()
@@ -45,6 +48,7 @@ public class PipeManager : MonoBehaviour
                 {
                     int random = Random.Range(0, pipes.Length);
                     newGridObj.GetComponent<Image>().sprite = pipes[random];
+                    newGridObj.GetComponent<Image>().material.SetTexture("_GradientTex", pipeGradients[random]);
                     newGridObj.GetComponent<SingleGrid>().SetLogic(random);
                     currentX = i;
                     currentY = j;
@@ -53,6 +57,7 @@ public class PipeManager : MonoBehaviour
                 {
                     int random = Random.Range(0, pipes.Length);
                     newGridObj.GetComponent<Image>().sprite = pipes[random];
+                    newGridObj.GetComponent<Image>().material.SetTexture("_GradientTex", pipeGradients[random]);
                     newGridObj.GetComponent<SingleGrid>().SetLogic(random);
                     if(random == 0)
                     {
@@ -70,33 +75,65 @@ public class PipeManager : MonoBehaviour
             GameObject newGridObj = Instantiate(gridObj, nextT);
             int random = Random.Range(0, pipes.Length);
             newGridObj.GetComponent<Image>().sprite = pipes[random];
+            newGridObj.GetComponent<Image>().material.SetTexture("_GradientTex", pipeGradients[random]);
             newGridObj.GetComponent<SingleGrid>().SetLogic(random);
             int randRot = Random.Range(0, 4);
             for(int j = 0; j < randRot; j++)
             {
                 newGridObj.GetComponent<SingleGrid>().RotatePipe();
             }
+            newGridObj.GetComponent<SingleGrid>().numOfRotations = randRot;
             nextObjs.Add(newGridObj);
         }
     }
 
-    public void GetNextPipe(int clickedX, int clickedY)
+    public void GetNextPipe(int clickedX, int clickedY, Image img, SingleGrid g)
     {
-        gridObjs[clickedX + width*clickedY].GetComponent<Image>().sprite = nextObjs[nextObjs.Count-1].GetComponent<Image>().sprite;
-        Destroy(nextObjs[nextObjs.Count-1]);
+        // ridObjs[clickedX + width*clickedY].GetComponent<Image>().sprite
+        img.sprite = nextT.GetChild(nextT.childCount-1).GetComponent<Image>().sprite;
+        img.material.SetTexture("_GradientTex", nextT.GetChild(nextT.childCount-1).GetComponent<Image>().material.GetTexture("_GradientTex"));
+        for(int i = 0; i < nextT.GetChild(nextT.childCount-1).GetComponent<SingleGrid>().numOfRotations; i++)
+        {
+            g.RotatePipe();
+        }
+        g.SetLogic((int)nextT.GetChild(nextT.childCount-1).GetComponent<SingleGrid>().currentPipe);
+        Destroy(nextT.GetChild(nextT.childCount-1).gameObject);
+        // nextObjs.RemoveAt(nextObjs.Count - 1);
         
         // Add one to end, change it to start and change rest to +1
         GameObject newGridObj = Instantiate(gridObj, nextT);
+        // nextObjs.Add(newGridObj);
         int random = Random.Range(0, pipes.Length);
         newGridObj.GetComponent<Image>().sprite = pipes[random];
+        newGridObj.GetComponent<Image>().material.SetTexture("_GradientTex", pipeGradients[random]);
         newGridObj.GetComponent<SingleGrid>().SetLogic(random);
-
-        GameObject firstObj = nextObjs[0];
-        nextObjs[0] = nextObjs[nextObjs.Count-1];
-        for(int i = 1; i < nextObjs.Count-1; i++)
+        int randRot = Random.Range(0, 4);
+        for(int j = 0; j < randRot; j++)
         {
-            nextObjs[i+1] = nextObjs[i];
+            newGridObj.GetComponent<SingleGrid>().RotatePipe();
         }
-        nextObjs[1] = firstObj;
+        newGridObj.GetComponent<SingleGrid>().numOfRotations = randRot;
+
+        nextT.GetChild(nextT.childCount-1).transform.SetAsFirstSibling();
+        // GameObject firstObj = nextObjs[0];
+        // // nextObjs[0] = nextObjs[nextObjs.Count-1];
+        // for(int i = 0; i < nextObjs.Count-1; i++)
+        // {
+        //     nextObjs[i] = nextObjs[i+1];
+        // }
+        // nextObjs[0] = firstObj;
+    }
+
+    public IEnumerator WaterFlowLoop()
+    {
+        yield return new WaitForSeconds(2.0f);
+        gridObjs[currentX + width*currentY].GetComponent<Image>().material.SetFloat("_WaterValue", 1);
+        float lerp = 0.0f;
+        while(lerp < 1.0f)
+        {
+            gridObjs[currentX + width*currentY].GetComponent<Image>().material.SetFloat("_WaterValue", 1.0f-lerp);
+            lerp += Time.deltaTime * 0.2f;
+            yield return null;
+        }
     }
 }
