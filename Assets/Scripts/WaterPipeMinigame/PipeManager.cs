@@ -24,6 +24,7 @@ public class PipeManager : MonoBehaviour
     public Material waterPipeMat;
     GameObject startTile;
     List<SingleGrid> gridBlocks = new List<SingleGrid>();
+    public GameObject victoryCanvas;
 
     // Water flowing variables
     int currentX;
@@ -202,6 +203,7 @@ public class PipeManager : MonoBehaviour
                 if(nextGrid.x == winX && nextGrid.y-1 == winY)
                 {
                     Debug.Log("Win!");
+                    victoryCanvas.SetActive(true);
                     playing = false;
                     break;
                 }
