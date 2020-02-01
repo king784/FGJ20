@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class DragAndDrop : MonoBehaviour
 {
     [SerializeField] private Transform picturePlace;
+    RectTransform rt;
     public Button coffeeButton;
     public GameObject victoryPanel;
     private Vector2 initialPosition;
@@ -14,14 +15,22 @@ public class DragAndDrop : MonoBehaviour
     private Color color;
     public static bool locked;
 
+    public Transform wirePointPlug;
+    public Transform wirePointMachine;
+    LineRenderer lineRenderer;
+
 
     void Start()
     {
+        lineRenderer = GetComponent<LineRenderer>();
+        lineRenderer.enabled = true;
         initialPosition = transform.position;
+        rt = GetComponent<RectTransform>();
     }
 
     private void OnMouseDown()
     {
+        Debug.Log(this.transform.position);
         if (!locked)
         {
             deltaX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x - transform.position.x;
@@ -33,12 +42,14 @@ public class DragAndDrop : MonoBehaviour
     {
         if(!locked)
         {
-            mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            transform.position = new Vector2(mousePosition.x - deltaX, mousePosition.y - deltaY);
+            mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0.0f));
+            //transform.position = new Vector3(mousePosition.x - deltaX, mousePosition.y - deltaY, 0);
+            rt.position = new Vector3(mousePosition.x - deltaX, mousePosition.y - deltaY, 2);
 
-            float rndX = Random.Range(this.transform.position.x, this.transform.position.x + 0.5f);
-            float rndY = Random.Range(this.transform.position.y, this.transform.position.y + 0.5f);
-            transform.position = new Vector2(rndX, rndY);
+            float rndX = Random.Range(this.transform.position.x, this.transform.position.x + 1f);
+            float rndY = Random.Range(this.transform.position.y, this.transform.position.y + 1f);
+            rt.position = new Vector3(mousePosition.x - deltaX, mousePosition.y - deltaY, 2);
+            transform.position = new Vector3(rndX, rndY, 2);
         }
     }
 
@@ -47,13 +58,13 @@ public class DragAndDrop : MonoBehaviour
         if(Mathf.Abs(transform.position.x - picturePlace.position.x) <= 0.5f &&
             Mathf.Abs(transform.position.y - picturePlace.position.y) <= 0.5f)
         {
-            transform.position = new Vector2(picturePlace.position.x, picturePlace.position.y);
+            transform.position = new Vector3(picturePlace.position.x - 0.2f, picturePlace.position.y, 2);
             locked = true;
             coffeeButton.onClick.AddListener(CoffeeButtonOn);
         }
         else
         {
-            transform.position = new Vector2(initialPosition.x, initialPosition.y);
+            transform.position = new Vector3(initialPosition.x, initialPosition.y, 2);
         }
     }
 
@@ -61,6 +72,12 @@ public class DragAndDrop : MonoBehaviour
     {
         coffeeButton.image.color = Color.green;
         victoryPanel.SetActive(true);
+    }
+
+    private void Update()
+    {
+        lineRenderer.SetPosition(0, wirePointPlug.position);
+        lineRenderer.SetPosition(1, wirePointMachine.position);
     }
 
 }
