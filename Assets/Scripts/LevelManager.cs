@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,12 +11,13 @@ public class LevelManager : MonoBehaviour
     public float Grade { get => grade; private set => grade = value; }
 
     // Start is called before the first frame update
-    public string[] LevelNames;
+    public List<string> LevelNames = new List<string>();
 
     Dictionary<string, bool> FixedGlitchedWorlds = new Dictionary<string, bool>();
     Dictionary<string, GameObject> AllGlitches = new Dictionary<string, GameObject>();
     float grade;
     Vector3 playerPositionBeforeGlitch;
+    public string currentLevel;
 
 
     private void Awake()
@@ -55,24 +57,45 @@ public class LevelManager : MonoBehaviour
         {
             if (entry.Value == true)
             {
-                ClearGlitchedWorld(entry.Key);
-                GameObject glitchToRemove;
-                AllGlitches.TryGetValue(entry.Key, out glitchToRemove);//try and find a gameobject with the same key as the cleared world and return it to the glitchtoremove variable
-                if (glitchToRemove)//if the same object was found in allglitches
+                foreach(GameObject obj in GameObject.FindGameObjectsWithTag("Glitch"))
                 {
-                    AllGlitches.Remove(entry.Key);//glitch has been cleared so delete it from allglitches list
-                    Destroy(glitchToRemove);//destroy the glitch gameobject
+                    if(obj.GetComponent<GlitchChangeScene>().worldToGoto == entry.Key)
+                    {
+                        Destroy(obj);
+                    }
                 }
+                // GameObject glitchToRemove;
+                // foreach (KeyValuePair<string, GameObject> entry2 in AllGlitches)
+                // {
+                //     if(entry2.Key == entry.Key)
+                //     {
+                //         AllGlitches.Remove(entry.Key);//glitch has been cleared so delete it from allglitches list
+                //         Destroy(entry2.Value.gameObject);//destroy the glitch gameobject
+                //         break;
+                //     }
+                // }
+                //AllGlitches.TryGetValue(entry.Key, out glitchToRemove);//try and find a gameobject with the same key as the cleared world and return it to the glitchtoremove variable
+                // if (glitchToRemove)//if the same object was found in allglitches
+                // {
+                    
+                // }
             }
         }
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "OverWorld")
+        if (scene.name == "OverWorld" && LevelNames.Contains(currentLevel))
         {
             checkFixedGlitches();
+            playerPositionBeforeGlitch.x += 8.0f;
             GameObject.FindGameObjectWithTag("Player").transform.position = playerPositionBeforeGlitch;
+            Camera.main.GetComponent<CameraFollowPlayer>().target = GameObject.Find(currentLevel).transform;
+            // foreach (KeyValuePair<string, bool> entry in FixedGlitchedWorlds)
+            // {
+            //     Debug.Log(entry.Key);
+            //     Debug.Log(entry.Value);
+            // }
         }
     }
 
@@ -98,6 +121,7 @@ public class LevelManager : MonoBehaviour
             if (entry.Key.Equals(sceneName))//if item with same key as scene name has been found
             {
                 FixedGlitchedWorlds[entry.Key] = true;//set value of item to true, the glitch has been fixed
+                break;
             }
         }
     }
