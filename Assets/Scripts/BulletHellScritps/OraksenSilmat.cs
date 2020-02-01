@@ -11,6 +11,8 @@ public class OraksenSilmat : MonoBehaviour
     LineRenderer lineRenderer;
     public Transform[] laserHits;
 
+    bool canDo = true;
+
     private void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
@@ -27,11 +29,18 @@ public class OraksenSilmat : MonoBehaviour
         lineRenderer.SetPosition(0, transform.position);
         lineRenderer.SetPosition(1, laserHits[posRnd].position);
 
-        if (rnd == 0)
+        if (rnd == 0 && canDo)
+        {
+            canDo = false;
             StartCoroutine(quickLaser());
+        }
        
-        if (rnd == 1)
+        if (rnd == 1 && canDo)
+        {
+
+            canDo = false;
             StartCoroutine(slowLaser());
+        }
         else
         {
             StartCoroutine(doNothing());
@@ -41,22 +50,25 @@ public class OraksenSilmat : MonoBehaviour
 
     IEnumerator quickLaser()
     {
-        //Debug.Log("nopee");
         lineRenderer.enabled = true;
-        yield return new WaitForSeconds(1.5f);
+        Debug.Log("TÄÄ");
+        //laserSound.pitch
+        yield return new WaitForSeconds(0.5f);
         posRnd = Random.Range(0, 6);
         lineRenderer.enabled = false;
         rnd = Random.Range(0, maxRnd);
+        canDo = true;
     }
 
     IEnumerator slowLaser()
     {
         //Debug.Log("Hidas");
         lineRenderer.enabled = true;
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(1f);
         posRnd = Random.Range(0, 6);
         lineRenderer.enabled = false;
         rnd = Random.Range(0, maxRnd);
+        canDo = true;
     }
     IEnumerator doNothing()
     {
