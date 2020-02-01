@@ -29,12 +29,25 @@ public class PipeManager : MonoBehaviour
     int currentX;
     int currentY;
     public int winX, winY;
+    float speedMult = 1.0f;
 
     void Start()
     {
         SpawnGrid();
         SpawnNextColumn();
         StartCoroutine(WaterFlowLoop());
+    }
+
+    void Update()
+    {
+        if(Input.GetButtonDown("Fire2"))
+        {
+            speedMult = 40.0f;
+        }
+        if(Input.GetButtonUp("Fire2"))
+        {
+            speedMult = 1.0f;
+        }
     }
 
     void SpawnGrid()
@@ -160,7 +173,7 @@ public class PipeManager : MonoBehaviour
             while(lerp < 1.0f)
             {
                 nextGrid.gameObject.GetComponent<Image>().material.SetFloat("_WaterValue", 1.0f-lerp);
-                lerp += Time.deltaTime * 0.2f;
+                lerp += Time.deltaTime * 0.2f * speedMult;
                 yield return null;
             }
             nextGrid.gameObject.GetComponent<Image>().material.SetFloat("_WaterValue", 0.0f);
@@ -192,8 +205,9 @@ public class PipeManager : MonoBehaviour
                     playing = false;
                     break;
                 }
-
-                if(nextGrid.GetComponent<SingleGrid>().flowingTo == 0)
+                if(playing)
+                {
+                    if(nextGrid.GetComponent<SingleGrid>().flowingTo == 0)
                 {
                     nextGrid = GetCorrectGrid(nextGrid.GetComponent<SingleGrid>().x-1, nextGrid.GetComponent<SingleGrid>().y);
                 }
@@ -208,6 +222,14 @@ public class PipeManager : MonoBehaviour
                 else if(nextGrid.GetComponent<SingleGrid>().flowingTo == 3)
                 {
                     nextGrid = GetCorrectGrid(nextGrid.GetComponent<SingleGrid>().x, nextGrid.GetComponent<SingleGrid>().y+1);
+                }
+
+                if(nextGrid.x < 0 || nextGrid.x > width-1 || nextGrid.y < 0 || nextGrid.y > height-1)
+                {
+                    Debug.Log("Game over!");
+                    LevelManager.LevelMaster.AddToGrade(-0.5f);
+                    playing = false;
+                    break;
                 }
 
                 Material newPipeMat2 = Instantiate(waterPipeMat);
@@ -295,9 +317,11 @@ public class PipeManager : MonoBehaviour
             else
             {
                 playing = false;
+                LevelManager.LevelMaster.AddToGrade(-0.5f);
             }
+        }    
         }
-        Debug.Log("Game over!");
+        
     }
 
     SingleGrid GetCorrectGrid(int x, int y)

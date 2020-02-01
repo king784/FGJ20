@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 279062a04ee3aa44b9b7843cb2df9f6e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: dae6d79b3213a614d8a668151a5d770c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -131,6 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sides: 00000000000000000000000000000000
+  flowingTo: 0
   currentPipe: 0
   activity: 0
   numOfRotations: 0

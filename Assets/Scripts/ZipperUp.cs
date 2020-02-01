@@ -21,11 +21,19 @@ public class ZipperUp : MonoBehaviour
         {
             victoryPanel.SetActive(true);
             slider.enabled = false;
+            return;
         }
 
         picturePanels[(int)slider.value].SetActive(true);
 
         if(slider.value > 0)
-        picturePanels[(int)slider.value-1].SetActive(false);
+        {
+            picturePanels[(int)slider.value-1].SetActive(false);
+            picturePanels[(int)slider.value+1].SetActive(false);
+        }
+        if(slider.value == 0)
+        {
+            picturePanels[(int)slider.value+1].SetActive(false);
+        }
     }
 }
