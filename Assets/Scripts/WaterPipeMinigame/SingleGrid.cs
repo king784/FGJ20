@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum Pipe {Straight, Curve, Cross}
 
@@ -8,7 +9,15 @@ public class SingleGrid : MonoBehaviour
 {
     // Left, Up, Right, Down
     public bool[] sides = new bool[4];
-    public void SetLogic(int p)
+    public int x;
+    public int y;
+
+    void Start()
+    {
+        GetComponent<Button>().onClick.AddListener(() => FindObjectOfType<PipeManager>().GetNextPipe(x, y));
+    }
+
+     public void SetLogic(int p)
     {
         if(p == (int)Pipe.Straight)
         {
@@ -31,6 +40,12 @@ public class SingleGrid : MonoBehaviour
             sides[2] = true;
             sides[3] = true;
         }
+    }
+
+    public void SetPos(int newX, int newY)
+    {
+        x = newX;
+        y = newY;
     }
 
     public void RotatePipe()
