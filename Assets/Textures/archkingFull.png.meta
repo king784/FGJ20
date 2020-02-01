@@ -1,7 +1,19 @@
 fileFormatVersion: 2
-guid: 9c4550578cb0283449522dd0a6fdec5f
+guid: c0e5905e3745bc84db46a36ed9705ff8
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 1552795346813835356
+    second: archkingRightHand
+  - first:
+      213: 1516747639780251589
+    second: archkingBody
+  - first:
+      213: -2235882663714200366
+    second: archkingLeftHand
+  - first:
+      213: -7239224842267742055
+    second: archkingCape
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -40,7 +52,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -120,11 +132,95 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: archkingRightHand
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 281
+        width: 173
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c58d7bf0423ac8510800000000000000
+      internalID: 1552795346813835356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: archkingBody
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 326
+        width: 447
+        height: 595
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c7930b31f19c0510800000000000000
+      internalID: 1516747639780251589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: archkingLeftHand
+      rect:
+        serializedVersion: 2
+        x: 588
+        y: 278
+        width: 195
+        height: 299
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d46cd5409c88f0e0800000000000000
+      internalID: -2235882663714200366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: archkingCape
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 7
+        width: 514
+        height: 274
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 990b27b6c5b198b90800000000000000
+      internalID: -7239224842267742055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 037aacbd4e9d29d43808447a4e37d3a0
     internalID: 0
     vertices: []
     indices: 
