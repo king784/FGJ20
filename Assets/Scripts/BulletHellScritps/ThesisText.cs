@@ -11,7 +11,7 @@ public class ThesisText : MonoBehaviour
     public TMP_InputField inputField;
     public GameObject oras;
     int nextWord = 1;
-    private float delay = 0.00005f;
+    private float delay = 0.05f;
     private string currentText = "";
 
     public GameObject endPanel;
@@ -22,7 +22,7 @@ public class ThesisText : MonoBehaviour
 
     bool rightWord = false;
 
-    bool debugMode = true;
+    bool debugMode = false;
 
     string[] inputs =
     {
@@ -363,7 +363,7 @@ public class ThesisText : MonoBehaviour
         }
         Win = true;
     }
-        float speed = 0;
+    float speed = 0;
 
     void allDone()
     {
