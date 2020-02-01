@@ -5,33 +5,63 @@ using UnityEngine;
 public class OraksenSilmat : MonoBehaviour
 {
     int rnd;
+    int maxRnd = 5;
+    int posRnd;
+
+    LineRenderer lineRenderer;
+    public Transform[] laserHits;
 
     private void Start()
     {
-        rnd = Random.Range(0, 2);
+        lineRenderer = GetComponent<LineRenderer>();
+        lineRenderer.enabled = false;
+        rnd = Random.Range(0, maxRnd);
+        posRnd = Random.Range(0, 6);
     }
     void Update()
     {
-        if (rnd == 0)
-            StartCoroutine(quickRoll());
+        //Debug.Log(this.gameObject + " " + rnd);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up);
+        Debug.DrawLine(transform.position, hit.point);
+        hit.point = laserHits[posRnd].position;
+        lineRenderer.SetPosition(0, transform.position);
+        lineRenderer.SetPosition(1, laserHits[posRnd].position);
 
+        if (rnd == 0)
+            StartCoroutine(quickLaser());
+       
         if (rnd == 1)
-            StartCoroutine(slowRoll());
+            StartCoroutine(slowLaser());
+        else
+        {
+            StartCoroutine(doNothing());
+
+        }
     }
 
-    IEnumerator quickRoll()
+    IEnumerator quickLaser()
     {
         //Debug.Log("nopee");
-        this.transform.Rotate(0, 0, 10);
-        yield return new WaitForSeconds(3);
-        rnd = Random.Range(0, 2);
+        lineRenderer.enabled = true;
+        yield return new WaitForSeconds(1.5f);
+        posRnd = Random.Range(0, 6);
+        lineRenderer.enabled = false;
+        rnd = Random.Range(0, maxRnd);
     }
 
-    IEnumerator slowRoll()
+    IEnumerator slowLaser()
     {
         //Debug.Log("Hidas");
-        this.transform.Rotate(0, 0, 2);
-        yield return new WaitForSeconds(10);
-        rnd = Random.Range(0, 2);
+        lineRenderer.enabled = true;
+        yield return new WaitForSeconds(2.5f);
+        posRnd = Random.Range(0, 6);
+        lineRenderer.enabled = false;
+        rnd = Random.Range(0, maxRnd);
+    }
+    IEnumerator doNothing()
+    {
+        yield return new WaitForSeconds(5f);
+        lineRenderer.enabled = false;
+        rnd = Random.Range(0, maxRnd);
     }
 }

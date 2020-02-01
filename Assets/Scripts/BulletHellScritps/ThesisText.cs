@@ -9,11 +9,19 @@ public class ThesisText : MonoBehaviour
     public TextMeshProUGUI givenText;
     public TextMeshProUGUI placeHolder;
     public TMP_InputField inputField;
+    public GameObject oras;
     int nextWord = 1;
-    private float delay = 0.005f;
+    private float delay = 0.00005f;
     private string currentText = "";
 
+    public GameObject endPanel;
+    public GameObject consolePanel;
+
+    bool Win = false;
+
     bool rightWord = false;
+
+    bool debugMode = true;
 
     string[] inputs =
     {
@@ -74,12 +82,16 @@ public class ThesisText : MonoBehaviour
         inputField.Select();
         inputField.ActivateInputField();
 
+
         StartCoroutine(ShowText());
+
     }
 
     private void Update()
     {
         questions();
+        if (Win)
+            allDone();
     }
 
     void questions()
@@ -247,103 +259,118 @@ public class ThesisText : MonoBehaviour
         for (int i = 0; i <= fullText.Length; i++)
         {
             currentText = fullText.Substring(0, i);
-            if(i == 100)
+            if (!debugMode)
             {
-                placeHolder.text = inputs[0];
-                yield return new WaitUntil(() => rightWord == true);
-                rightWord = false;
-            }
-            if (i == 200)
-            {
-                placeHolder.text = inputs[1];
-                yield return new WaitUntil(() => rightWord == true);
-                rightWord = false;
-            }
-            if (i == 300)
-            {
-                placeHolder.text = inputs[2];
-                yield return new WaitUntil(() => rightWord == true);
-                rightWord = false;
-            }
-            
-            if (i == 400)
-            {
-                placeHolder.text = inputs[3];
-                yield return new WaitUntil(() => rightWord == true);
-                rightWord = false;
-            }
-            if (i == 500)
-            {
-                placeHolder.text = inputs[4];
-                yield return new WaitUntil(() => rightWord == true);
-                rightWord = false;
-            }
-            
-            
-            if (i == 600)
-            {
-                placeHolder.text = inputs[5];
-                yield return new WaitUntil(() => rightWord == true);
-                rightWord = false;
-            }
-            if (i == 700)
-            {
-                placeHolder.text = inputs[6];
-                yield return new WaitUntil(() => rightWord == true);
-                rightWord = false;
-            }
-            if (i == 800)
-            {
-                placeHolder.text = inputs[7];
-                yield return new WaitUntil(() => rightWord == true);
-                rightWord = false;
-            }
-            if (i == 900)
-            {
-                placeHolder.text = inputs[8];
-                yield return new WaitUntil(() => rightWord == true);
-                rightWord = false;
-            }
-            if (i == 1000)
-            {
-                placeHolder.text = inputs[9];
-                yield return new WaitUntil(() => rightWord == true);
-                rightWord = false;
-            }
-            if (i == 1100)
-            {
-                placeHolder.text = inputs[10];
-                yield return new WaitUntil(() => rightWord == true);
-                rightWord = false;
-            }
-            if (i == 1200)
-            {
-                placeHolder.text = inputs[11];
-                yield return new WaitUntil(() => rightWord == true);
-                rightWord = false;
-            }
-            if (i == 1300)
-            {
-                placeHolder.text = inputs[12];
-                yield return new WaitUntil(() => rightWord == true);
-                rightWord = false;
-            }
-            if (i == 1400)
-            {
-                placeHolder.text = inputs[13];
-                yield return new WaitUntil(() => rightWord == true);
-                rightWord = false;
-            }
-            if (i == 1500)
-            {
-                placeHolder.text = inputs[14];
-                yield return new WaitUntil(() => rightWord == true);
-                rightWord = false;
+
+                if (i == 100)
+                {
+                    placeHolder.text = inputs[0];
+                    yield return new WaitUntil(() => rightWord == true);
+                    rightWord = false;
+                }
+                if (i == 200)
+                {
+                    placeHolder.text = inputs[1];
+                    yield return new WaitUntil(() => rightWord == true);
+                    rightWord = false;
+                }
+                if (i == 300)
+                {
+                    placeHolder.text = inputs[2];
+                    yield return new WaitUntil(() => rightWord == true);
+                    rightWord = false;
+                }
+
+                if (i == 400)
+                {
+                    placeHolder.text = inputs[3];
+                    yield return new WaitUntil(() => rightWord == true);
+                    rightWord = false;
+                }
+                if (i == 500)
+                {
+                    placeHolder.text = inputs[4];
+                    yield return new WaitUntil(() => rightWord == true);
+                    rightWord = false;
+                }
+
+
+                if (i == 600)
+                {
+                    placeHolder.text = inputs[5];
+                    yield return new WaitUntil(() => rightWord == true);
+                    rightWord = false;
+                }
+                if (i == 700)
+                {
+                    placeHolder.text = inputs[6];
+                    yield return new WaitUntil(() => rightWord == true);
+                    rightWord = false;
+                }
+                if (i == 800)
+                {
+                    placeHolder.text = inputs[7];
+                    yield return new WaitUntil(() => rightWord == true);
+                    rightWord = false;
+                }
+                if (i == 900)
+                {
+                    placeHolder.text = inputs[8];
+                    yield return new WaitUntil(() => rightWord == true);
+                    rightWord = false;
+                }
+                if (i == 1000)
+                {
+                    placeHolder.text = inputs[9];
+                    yield return new WaitUntil(() => rightWord == true);
+                    rightWord = false;
+                }
+                if (i == 1100)
+                {
+                    placeHolder.text = inputs[10];
+                    yield return new WaitUntil(() => rightWord == true);
+                    rightWord = false;
+                }
+                if (i == 1200)
+                {
+                    placeHolder.text = inputs[11];
+                    yield return new WaitUntil(() => rightWord == true);
+                    rightWord = false;
+                }
+                if (i == 1300)
+                {
+                    placeHolder.text = inputs[12];
+                    yield return new WaitUntil(() => rightWord == true);
+                    rightWord = false;
+                }
+                if (i == 1400)
+                {
+                    placeHolder.text = inputs[13];
+                    yield return new WaitUntil(() => rightWord == true);
+                    rightWord = false;
+                }
+                if (i == 1500)
+                {
+                    placeHolder.text = inputs[14];
+                    yield return new WaitUntil(() => rightWord == true);
+                    rightWord = false;
+                }
             }
 
             this.GetComponent<TextMeshProUGUI>().text = currentText;
             yield return new WaitForSeconds(delay);
         }
-        Debug.Log("VALMIS!!!!");
+        Win = true;
+    }
+        float speed = 0;
+
+    void allDone()
+    {
+        inputField.gameObject.SetActive(false);
+        consolePanel.SetActive(false);
+        oras.active = false;
+
+        speed += 0.7f * Time.deltaTime;
+        endPanel.GetComponent<Image>().color = new Color(0,0,0,Mathf.Lerp(0,1,speed));
     }
 }
