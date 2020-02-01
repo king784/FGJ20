@@ -13,7 +13,6 @@ public class UIConsole : MonoBehaviour
 
     Animator anim;
 
-
     private string[] words={
         "FIX THAT!!! >:(",
         "REEEEEEEEE!!",
