@@ -5,15 +5,12 @@ using UnityEngine;
 public class bottleFlipperScript : MonoBehaviour
 {
     public GameObject[] bottleObjects;
-
+    bool ReadyToFlip;
     GameObject bottle;
     // Start is called before the first frame update
     void Start()
     {
-        bottle =  Instantiate(bottleObjects[Random.Range(0, bottleObjects.Length - 1)], transform);
-        Vector3 forcVec = transform.up * 10;
-        forcVec.x += Random.Range(-0.5f, 0.5f);
-        bottle.GetComponent<Rigidbody>().AddForce( forcVec,ForceMode.Impulse);
+        ReadyToFlip = true;
     }
 
     // Update is called once per frame
@@ -33,16 +30,21 @@ public class bottleFlipperScript : MonoBehaviour
             }
         }
 
+        if(ReadyToFlip)
         StartCoroutine(WaitForRandomFlips());
     }
 
     IEnumerator WaitForRandomFlips()
     {
-        float timeW = Random.Range(5f, 60f);
+        ReadyToFlip = false;
+        float timeW = Random.Range(2f, 5f);
         yield return new WaitForSeconds(timeW);
         bottle = Instantiate(bottleObjects[Random.Range(0, bottleObjects.Length - 1)], transform);
         Vector3 forcVec = transform.up * 10;
         forcVec.x += Random.Range(-0.5f, 0.5f);
         bottle.GetComponent<Rigidbody>().AddForce(forcVec, ForceMode.Impulse);
+
+        yield return new WaitForSeconds(Random.Range(1f, 5f));
+        ReadyToFlip = true;
     }
 }

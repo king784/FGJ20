@@ -449,6 +449,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61bc8155eae00cc4f8d980b2c710e710, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LevelNames:
+  - ZipUp
+  - ClickTheCoke
+  - WheresMyWater
+  - FixArchKingJaakko
+  - MakeCoffee
+  - WriteMoreAsTheyCome
 --- !u!4 &1304533281
 Transform:
   m_ObjectHideFlags: 0
