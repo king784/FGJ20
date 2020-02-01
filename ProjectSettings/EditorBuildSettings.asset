@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CoffeeTestu.unity
     guid: b2598c2c3b3aebb42a78c5d4c7ed63df
+  - enabled: 1
+    path: Assets/Scenes/WheresMyWater.unity
+    guid: 219a98b0477ac844bafa8aaa4991925d
+  - enabled: 1
+    path: Assets/Scenes/ClickTheCoke.unity
+    guid: 00a2bfee6c07d264f953ea3854d79605
   m_configObjects: {}
