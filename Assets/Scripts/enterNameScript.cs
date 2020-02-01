@@ -11,6 +11,8 @@ public class enterNameScript : MonoBehaviour
     public Dialogue dialogue;
     public Dialogue wrongDialogue;
     public bool alreadyInUse = false;
+    public bool correct = false;
+    public GameObject victoryPanel;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +28,7 @@ public class enterNameScript : MonoBehaviour
             {
                 FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
                 alreadyInUse = true;
+                correct = true;
             }
             else
             {

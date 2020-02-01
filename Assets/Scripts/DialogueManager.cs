@@ -59,6 +59,10 @@ public class DialogueManager : MonoBehaviour
 
     void EndDialogue()
     {
+        if(ens.correct)
+        {
+            ens.victoryPanel.SetActive(true);
+        }
         ens.alreadyInUse = false;
     }
 }
