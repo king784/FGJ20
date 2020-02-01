@@ -64,8 +64,8 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DispGlitchOn: 1
-    - _DispIntensity: 0.32
-    - _DispProbability: 0.3
+    - _DispIntensity: 0.001
+    - _DispProbability: 0.02
     - _DstBlend: 0
     - _GlitchInterval: 0.057
     - _GlossMapScale: 1
