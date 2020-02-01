@@ -29,12 +29,25 @@ public class PipeManager : MonoBehaviour
     int currentX;
     int currentY;
     public int winX, winY;
+    float speedMult = 1.0f;
 
     void Start()
     {
         SpawnGrid();
         SpawnNextColumn();
         StartCoroutine(WaterFlowLoop());
+    }
+
+    void Update()
+    {
+        if(Input.GetButtonDown("Fire2"))
+        {
+            speedMult = 40.0f;
+        }
+        if(Input.GetButtonUp("Fire2"))
+        {
+            speedMult = 1.0f;
+        }
     }
 
     void SpawnGrid()
@@ -160,7 +173,7 @@ public class PipeManager : MonoBehaviour
             while(lerp < 1.0f)
             {
                 nextGrid.gameObject.GetComponent<Image>().material.SetFloat("_WaterValue", 1.0f-lerp);
-                lerp += Time.deltaTime * 0.2f;
+                lerp += Time.deltaTime * 0.2f * speedMult;
                 yield return null;
             }
             nextGrid.gameObject.GetComponent<Image>().material.SetFloat("_WaterValue", 0.0f);
