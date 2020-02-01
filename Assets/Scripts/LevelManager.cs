@@ -5,7 +5,30 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
+
+    public static LevelManager LevelMaster { get; private set; }
     // Start is called before the first frame update
+
+    Dictionary<string, bool> FixedGlitchedWorlds = new Dictionary<string, bool>();
+
+    public string[] LevelNames;
+
+    private void Awake()
+    {
+        if (LevelMaster == null)//singleton
+        {
+            LevelMaster = this;
+            DontDestroyOnLoad(gameObject);
+
+            foreach(string level in LevelNames){//initialize all worlds to false, none have been cleared yet
+                FixedGlitchedWorlds.Add(level, false);
+            }
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     void Start()
     {
 
