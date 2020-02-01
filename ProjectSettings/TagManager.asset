@@ -4,7 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
   - Ground
+=======
+  - Glitch
+>>>>>>> 9522571f170d91d41f2c521c703c180913b48f0c
   layers:
   - Default
   - TransparentFX

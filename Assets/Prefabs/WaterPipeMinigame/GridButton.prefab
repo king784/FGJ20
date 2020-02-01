@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 995376e48dd244046bbb43300fef749d, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -130,3 +130,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d7b34834778ca8448c0160ba3e0b204, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sides: 00000000000000000000000000000000
+  currentPipe: 0
+  activity: 0
+  numOfRotations: 0
+  x: 0
+  y: 0
