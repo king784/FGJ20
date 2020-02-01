@@ -10,6 +10,11 @@ public class PlayerMovement : MonoBehaviour
 
     float horizontalMove;
     bool jump = false;
+
+    private void Start()
+    {
+        Controller = gameObject.GetComponent<CharacterController2D>();
+    }
     void Update()
     {
         //move
