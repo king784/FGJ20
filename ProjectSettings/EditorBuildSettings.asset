@@ -20,4 +20,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ClickTheCoke.unity
     guid: 00a2bfee6c07d264f953ea3854d79605
+  - enabled: 1
+    path: Assets/Scenes/MiloTestuu.unity
+    guid: c5d51e40c19278341af1dcb24b4f42bc
+  - enabled: 1
+    path: Assets/Scenes/Tarita test.unity
+    guid: 49dc98bf9bd92e24c8add433ab123aaf
+  - enabled: 1
+    path: Assets/Scenes/RikunScene.unity
+    guid: 0a7c5873e7f9b02459e9e7f61f6c713a
   m_configObjects: {}
