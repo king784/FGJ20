@@ -495,7 +495,7 @@ MonoBehaviour:
   gridObjs: []
   nextObjs: []
   waterPipeMat: {fileID: 2100000, guid: 995376e48dd244046bbb43300fef749d, type: 2}
-  winX: 6
+  winX: 5
   winY: -1
 --- !u!4 &495978879
 Transform:
