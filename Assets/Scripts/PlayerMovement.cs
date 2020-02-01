@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
 
     float horizontalMove;
     bool jump = false;
+    bool isMoving = false;
+    private bool playDust;
 
     private void Start()
     {
@@ -25,6 +27,15 @@ public class PlayerMovement : MonoBehaviour
         {
             jump = true;
         }
+        if (Controller.Rigidbody2D.velocity.magnitude > 0f)
+        {
+            isMoving = true;
+        }
+        if (Controller.Rigidbody2D.velocity.magnitude > 0.1f)
+        {
+            playDust = true;
+        }
+
     }
 
     private void FixedUpdate()
