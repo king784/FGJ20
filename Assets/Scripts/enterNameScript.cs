@@ -34,6 +34,7 @@ public class enterNameScript : MonoBehaviour
             else
             {
                 FindObjectOfType<DialogueManager>().StartDialogue(wrongDialogue);
+                LevelManager.LevelMaster.AddToGrade(-0.1f);
                 alreadyInUse = true;
             }
         }
