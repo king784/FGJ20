@@ -91,6 +91,7 @@ public class LevelManager : MonoBehaviour
             playerPositionBeforeGlitch.x += 8.0f;
             GameObject.FindGameObjectWithTag("Player").transform.position = playerPositionBeforeGlitch;
             Camera.main.GetComponent<CameraFollowPlayer>().target = GameObject.Find(currentLevel).transform;
+            GameObject.Find(currentLevel + "Wall").GetComponent<BoxCollider2D>().enabled = true;
             // foreach (KeyValuePair<string, bool> entry in FixedGlitchedWorlds)
             // {
             //     Debug.Log(entry.Key);

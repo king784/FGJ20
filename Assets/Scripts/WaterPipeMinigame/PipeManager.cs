@@ -25,6 +25,7 @@ public class PipeManager : MonoBehaviour
     GameObject startTile;
     List<SingleGrid> gridBlocks = new List<SingleGrid>();
     public GameObject victoryCanvas;
+    public GameObject loseCanvas;
 
     // Water flowing variables
     int currentX;
@@ -230,6 +231,7 @@ public class PipeManager : MonoBehaviour
                 {
                     Debug.Log("Game over!");
                     LevelManager.LevelMaster.AddToGrade(-0.5f);
+                    loseCanvas.SetActive(true);
                     playing = false;
                     break;
                 }
@@ -320,6 +322,7 @@ public class PipeManager : MonoBehaviour
             {
                 playing = false;
                 LevelManager.LevelMaster.AddToGrade(-0.5f);
+                loseCanvas.SetActive(true);
             }
         }    
         }
