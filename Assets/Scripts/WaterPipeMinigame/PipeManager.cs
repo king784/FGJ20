@@ -208,6 +208,7 @@ public class PipeManager : MonoBehaviour
                     playing = false;
                     break;
                 }
+
                 if(playing)
                 {
                     if(nextGrid.GetComponent<SingleGrid>().flowingTo == 0)
