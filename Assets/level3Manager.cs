@@ -7,11 +7,12 @@ public class level3Manager : MonoBehaviour
 {
     public Image timerImage;
     public GameObject loseCanvas;
+    public bool win = false;
 
     // Update is called once per frame
     void Update()
     {
-        if(timerImage.fillAmount == 0)
+        if(timerImage.fillAmount == 0 && !win)
         {
             Debug.Log("Game Over! Fridge is overflooding with bottles");
             LevelManager.LevelMaster.AddToGrade(-0.5f);

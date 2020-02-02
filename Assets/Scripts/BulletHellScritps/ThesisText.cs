@@ -92,6 +92,10 @@ public class ThesisText : MonoBehaviour
 
     private void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            debugMode = !debugMode;
+        }
         // questions();
         if (Win)
             allDone();

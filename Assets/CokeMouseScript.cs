@@ -19,6 +19,7 @@ public class CokeMouseScript : MonoBehaviour
                 {
                     AudioManager.instance.Play("Cork");
                     victoryPanel.SetActive(true);
+                    FindObjectOfType<level3Manager>().win = true;
                     Debug.Log("Yay!");
                 }
             }

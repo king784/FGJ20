@@ -86,6 +86,7 @@ public class LevelManager : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         //AudioManager.instance.StopAll();
+        Cursor.lockState = CursorLockMode.None;
 
         if (scene.name == "OverWorld" && LevelNames.Contains(currentLevel))
         {
