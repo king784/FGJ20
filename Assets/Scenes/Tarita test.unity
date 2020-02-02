@@ -231,6 +231,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: VictoryPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 9040598912560568088, guid: baece0d4c7f6f7d43bf284741cc63dff,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9040598912560568095, guid: baece0d4c7f6f7d43bf284741cc63dff,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -992,7 +997,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 43
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: ed398947220b7284ea0b0a16800262f6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1445,7 +1450,7 @@ PrefabInstance:
     - target: {fileID: 1578399875561562574, guid: 9c6cb6b6ba99ab740b4237abcbbbeeb9,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 100
+      value: 0.85
       objectReference: {fileID: 0}
     - target: {fileID: 1578399875561562574, guid: 9c6cb6b6ba99ab740b4237abcbbbeeb9,
         type: 3}
@@ -1511,7 +1516,7 @@ PrefabInstance:
     - target: {fileID: 1578399875561562575, guid: 9c6cb6b6ba99ab740b4237abcbbbeeb9,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 2
+      value: -2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c6cb6b6ba99ab740b4237abcbbbeeb9, type: 3}

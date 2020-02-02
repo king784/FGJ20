@@ -5,6 +5,7 @@ using UnityEngine;
 public class CokeMouseScript : MonoBehaviour
 {
     public GameObject victoryPanel;
+    public bool lostGame = false;
     // Update is called once per frame
     void Update()
     {
@@ -14,7 +15,7 @@ public class CokeMouseScript : MonoBehaviour
             RaycastHit hit;
             if(Physics.Raycast(ray, out hit))
             {
-                if(hit.transform.gameObject.name.Substring(0,4) == "coke")
+                if(hit.transform.gameObject.name.Substring(0,4) == "coke" && !lostGame)
                 {
                     victoryPanel.SetActive(true);
                     Debug.Log("Yay!");

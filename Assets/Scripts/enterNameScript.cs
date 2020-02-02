@@ -24,7 +24,8 @@ public class enterNameScript : MonoBehaviour
     {
         if (!alreadyInUse)
         {
-            if (textmeshproinput.text.CompareTo("your name") == 1)
+            string text = textmeshproinput.text.Trim((char)8203);
+            if (text == "your name") //.CompareTo("your name") == 1)
             {
                 FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
                 alreadyInUse = true;

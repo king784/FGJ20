@@ -15,6 +15,7 @@ public class level3Manager : MonoBehaviour
         {
             Debug.Log("Game Over! Fridge is overflooding with bottles");
             LevelManager.LevelMaster.AddToGrade(-0.5f);
+            FindObjectOfType<CokeMouseScript>().lostGame = true;
             loseCanvas.SetActive(true);
         } else
         {
