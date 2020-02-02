@@ -22,8 +22,7 @@ public class EndMenuScript : MonoBehaviour
 
     public void ExitGame()
     {
-        FindObjectOfType<AudioManager>().Play("Buzz");
-        //Application.Quit();
+        Application.Quit();
     }
 
 }
