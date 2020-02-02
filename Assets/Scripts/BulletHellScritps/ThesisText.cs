@@ -97,6 +97,11 @@ public class ThesisText : MonoBehaviour
             allDone();
     }
 
+    public void ClearText()
+    {
+        inputField.text = "";
+    }
+
     public void questions()
     {
         string text = inputField.text.Trim((char)8203);
