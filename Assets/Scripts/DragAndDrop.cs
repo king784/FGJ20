@@ -22,6 +22,7 @@ public class DragAndDrop : MonoBehaviour
 
     void Start()
     {
+        AudioManager.instance.Play("Glitch");
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.enabled = true;
         initialPosition = transform.position;
@@ -58,6 +59,7 @@ public class DragAndDrop : MonoBehaviour
         if(Mathf.Abs(transform.position.x - picturePlace.position.x) <= 0.5f &&
             Mathf.Abs(transform.position.y - picturePlace.position.y) <= 0.5f)
         {
+            AudioManager.instance.Play("Buzz");
             transform.position = new Vector3(picturePlace.position.x - 0.2f, picturePlace.position.y, 2);
             locked = true;
             coffeeButton.onClick.AddListener(CoffeeButtonOn);
@@ -70,6 +72,7 @@ public class DragAndDrop : MonoBehaviour
 
     private void CoffeeButtonOn()
     {
+        AudioManager.instance.Play("Click");
         coffeeButton.image.color = Color.green;
         victoryPanel.SetActive(true);
     }

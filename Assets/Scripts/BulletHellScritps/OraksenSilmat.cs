@@ -23,7 +23,6 @@ public class OraksenSilmat : MonoBehaviour
     }
     void Update()
     {
-        //Debug.Log(this.gameObject + " " + rnd);
         RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up);
         Debug.DrawLine(transform.position, hit.point);
         hit.point = laserHits[posRnd].position;
@@ -51,9 +50,8 @@ public class OraksenSilmat : MonoBehaviour
 
     IEnumerator quickLaser()
     {
+        AudioManager.instance.Play("Laser");
         lineRenderer.enabled = true;
-        Debug.Log("TÄÄ");
-        //laserSound.pitch
         yield return new WaitForSeconds(0.5f);
         posRnd = Random.Range(0, 6);
         lineRenderer.enabled = false;
@@ -63,7 +61,7 @@ public class OraksenSilmat : MonoBehaviour
 
     IEnumerator slowLaser()
     {
-        //Debug.Log("Hidas");
+        AudioManager.instance.Play("Laser");
         lineRenderer.enabled = true;
         yield return new WaitForSeconds(1f);
         posRnd = Random.Range(0, 6);
@@ -77,6 +75,4 @@ public class OraksenSilmat : MonoBehaviour
         lineRenderer.enabled = false;
         rnd = Random.Range(0, maxRnd);
     }
-
-    
 }
