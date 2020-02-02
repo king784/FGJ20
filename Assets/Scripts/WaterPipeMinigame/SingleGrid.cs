@@ -77,8 +77,9 @@ public class SingleGrid : MonoBehaviour
 
     void ClickEvent()
     {
+        AudioManager.instance.Play("Iron");
         // Debug.Log("CLICK: " + sides[0] + "|" + sides[1] + "|" + sides[2] + "|" + sides[3] + "X: " + x + "| Y: " + y);
-        if(activity == GridActivity.Empty)
+        if (activity == GridActivity.Empty)
         {
             FindObjectOfType<PipeManager>().GetNextPipe(x, y, GetComponent<Image>(), this);
         }

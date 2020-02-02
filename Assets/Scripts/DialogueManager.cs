@@ -12,11 +12,14 @@ public class DialogueManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        AudioManager.instance.Play("Glitch");
         sentences = new Queue<string>();   
     }
 
     public void StartDialogue(Dialogue dialogue)
     {
+        AudioManager.instance.Stop("Glitch");
+        AudioManager.instance.Play("Type");
         sentences.Clear();
 
             foreach (string sentence in dialogue.sentences)
@@ -28,6 +31,7 @@ public class DialogueManager : MonoBehaviour
 
     IEnumerator NextSentence(string sentence)
     {
+        AudioManager.instance.Play("Type");
         dialogueText.text = "";
         DisplayNextSentence();
         yield return null;
@@ -61,6 +65,7 @@ public class DialogueManager : MonoBehaviour
     {
         if(ens.correct)
         {
+            AudioManager.instance.Stop("Type");
             ens.victoryPanel.SetActive(true);
         }
         ens.alreadyInUse = false;

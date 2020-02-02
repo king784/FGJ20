@@ -10,6 +10,11 @@ public class ZipperUp : MonoBehaviour
 
     public GameObject[] picturePanels;
 
+    private void Start()
+    {
+        AudioManager.instance.Play("Glitch");
+    }
+
     private void Update()
     {
         SetZipper();
@@ -33,6 +38,7 @@ public class ZipperUp : MonoBehaviour
 
         if(slider.value > 0)
         {
+            AudioManager.instance.Play("Zipper");
             picturePanels[(int)slider.value-1].SetActive(false);
             picturePanels[(int)slider.value+1].SetActive(false);
         }

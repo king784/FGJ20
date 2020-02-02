@@ -35,6 +35,7 @@ public class PipeManager : MonoBehaviour
 
     void Start()
     {
+        AudioManager.instance.Play("Glitch");
         SpawnGrid();
         SpawnNextColumn();
         StartCoroutine(WaterFlowLoop());
@@ -201,8 +202,10 @@ public class PipeManager : MonoBehaviour
             {
                 startTile = nextGrid.gameObject;
 
-                if(nextGrid.x == winX && nextGrid.y-1 == winY)
+                if (nextGrid.x == winX && nextGrid.y-1 == winY)
                 {
+                    AudioManager.instance.Play("Toilet");
+                    AudioManager.instance.Stop("Glitch");
                     Debug.Log("Win!");
                     victoryCanvas.SetActive(true);
                     playing = false;
@@ -332,7 +335,7 @@ public class PipeManager : MonoBehaviour
 
     SingleGrid GetCorrectGrid(int x, int y)
     {
-        for(int i = 0; i < gridBlocks.Count-1; i++)
+        for (int i = 0; i < gridBlocks.Count-1; i++)
         {
             if(gridBlocks[i].x == x && gridBlocks[i].y == y)
             {

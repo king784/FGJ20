@@ -17,6 +17,7 @@ public class CokeMouseScript : MonoBehaviour
             {
                 if(hit.transform.gameObject.name.Substring(0,4) == "coke" && !lostGame)
                 {
+                    AudioManager.instance.Play("Crok");
                     victoryPanel.SetActive(true);
                     Debug.Log("Yay!");
                 }

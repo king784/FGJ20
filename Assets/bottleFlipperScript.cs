@@ -11,6 +11,7 @@ public class bottleFlipperScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        AudioManager.instance.Play("Glitch");
         ReadyToFlip = true;
         StartCoroutine(WaitForRandomFlips());
     }
@@ -23,6 +24,7 @@ public class bottleFlipperScript : MonoBehaviour
             float timeW = Random.Range(2f, 5f);
             yield return new WaitForSeconds(timeW);
             bottle = Instantiate(bottleObjects[Random.Range(0, bottleObjects.Length - 1)], transform);
+            AudioManager.instance.Play("Swish");
             Vector3 forcVec = transform.up * 10;
             forcVec.x += Random.Range(-0.5f, 0.5f);
             bottle.GetComponent<Rigidbody>().AddForce(forcVec, ForceMode.Impulse);
