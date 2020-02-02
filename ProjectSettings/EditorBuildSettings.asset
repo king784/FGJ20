@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RikunScene.unity
     guid: 0a7c5873e7f9b02459e9e7f61f6c713a
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: f53e6cb938717b64f943d348b24be663
   m_configObjects: {}

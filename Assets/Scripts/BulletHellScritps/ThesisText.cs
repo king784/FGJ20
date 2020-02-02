@@ -92,16 +92,16 @@ public class ThesisText : MonoBehaviour
 
     private void Update()
     {
-        questions();
+        // questions();
         if (Win)
             allDone();
     }
 
-    void questions()
+    public void questions()
     {
         string text = inputField.text.Trim((char)8203);
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
+        // if (Input.GetKeyDown(KeyCode.Return))
+        // {
             inputField.Select();
             inputField.ActivateInputField();
             if (nextWord == 1)
@@ -269,7 +269,7 @@ public class ThesisText : MonoBehaviour
                 }
             }
             inputField.text = "";
-        }
+        // }
 
     }
 
