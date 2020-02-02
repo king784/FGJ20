@@ -11,6 +11,10 @@ public class VictoryPanelScript : MonoBehaviour
         {
             StartCoroutine(GoToMoras());
         }
+        else if(SceneManager.GetActiveScene().name == "RikunScene")
+        {
+            StartCoroutine(GoToGameOver());
+        }
         else
         {
             StartCoroutine(BackToOverworld());
@@ -29,5 +33,12 @@ public class VictoryPanelScript : MonoBehaviour
         yield return new WaitForSeconds(3.0f);
         LevelManager.LevelMaster.ClearGlitchedWorld(SceneManager.GetActiveScene().name);
         LevelManager.LevelMaster.GoToLevel("RikunScene");
+    }
+
+    IEnumerator GoToGameOver()
+    {
+        yield return new WaitForSeconds(3.0f);
+        LevelManager.LevelMaster.ClearGlitchedWorld(SceneManager.GetActiveScene().name);
+        LevelManager.LevelMaster.GoToLevel("GameOver");
     }
 }
