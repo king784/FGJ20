@@ -11,7 +11,7 @@ public class bottleFlipperScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        AudioManager.instance.Play("Glitch");
+        AudioManager.instance.Play("GlitchGame");
         ReadyToFlip = true;
         StartCoroutine(WaitForRandomFlips());
     }

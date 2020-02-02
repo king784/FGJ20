@@ -31,6 +31,7 @@ public class ZipperUp : MonoBehaviour
             }
             picturePanels[(int)slider.value].SetActive(true);
             slider.enabled = false;
+            AudioManager.instance.Stop("GlitchGame");
             return;
         }
 

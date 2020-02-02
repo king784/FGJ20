@@ -12,13 +12,13 @@ public class DialogueManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        AudioManager.instance.Play("Glitch");
+        AudioManager.instance.Play("GlitchGame");
         sentences = new Queue<string>();   
     }
 
     public void StartDialogue(Dialogue dialogue)
     {
-        AudioManager.instance.Stop("Glitch");
+        AudioManager.instance.Stop("GlitchGame");
         AudioManager.instance.Play("Type");
         sentences.Clear();
 

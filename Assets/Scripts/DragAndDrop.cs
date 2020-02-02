@@ -22,7 +22,7 @@ public class DragAndDrop : MonoBehaviour
 
     void Start()
     {
-        AudioManager.instance.Play("Glitch");
+        AudioManager.instance.Play("GlitchGame");
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.enabled = true;
         initialPosition = transform.position;

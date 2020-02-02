@@ -48,7 +48,7 @@ public class ThesisText : MonoBehaviour
 
     private void Start()
     {
-        AudioManager.instance.Play("Glich");
+        AudioManager.instance.Play("GlitchGameBoss");
         //Debug.Log(inputs.Length);
         fullText = "A Hello, World! program generally is a computer program that outputs or displays the message Hello, World!." +
             " Such a program is very simple in most programming languages, " +
@@ -280,7 +280,7 @@ public class ThesisText : MonoBehaviour
 
     IEnumerator ShowText()
     {
-        AudioManager.instance.Play("Typewriter");
+        AudioManager.instance.Play("Type");
         for (int i = 0; i <= fullText.Length; i++)
         {
 
@@ -290,140 +290,140 @@ public class ThesisText : MonoBehaviour
 
                 if (i == 100)
                 {
-                    AudioManager.instance.Stop("Typewriter");
+                    AudioManager.instance.Stop("Type");
                     placeHolder.text = inputs[0];
                     fixText.SetActive(true);
                     yield return new WaitUntil(() => rightWord == true);
-                    AudioManager.instance.Play("Typewriter");
+                    AudioManager.instance.Play("Type");
                     rightWord = false;
                 }
                 if (i == 200)
                 {
-                    AudioManager.instance.Stop("Typewriter");
+                    AudioManager.instance.Stop("Type");
                     placeHolder.text = inputs[1];
                     fixText.SetActive(true);
                     yield return new WaitUntil(() => rightWord == true);
-                    AudioManager.instance.Play("Typewriter");
+                    AudioManager.instance.Play("Type");
                     rightWord = false;
                 }
                 if (i == 300)
                 {
-                    AudioManager.instance.Stop("Typewriter");
+                    AudioManager.instance.Stop("Type");
                     placeHolder.text = inputs[2];
                     fixText.SetActive(true);
                     yield return new WaitUntil(() => rightWord == true);
-                    AudioManager.instance.Play("Typewriter");
+                    AudioManager.instance.Play("Type");
                     rightWord = false;
                 }
 
                 if (i == 400)
                 {
-                    AudioManager.instance.Stop("Typewriter");
+                    AudioManager.instance.Stop("Type");
                     placeHolder.text = inputs[3];
                     fixText.SetActive(true);
                     yield return new WaitUntil(() => rightWord == true);
-                    AudioManager.instance.Play("Typewriter");
+                    AudioManager.instance.Play("Type");
                     rightWord = false;
                 }
                 if (i == 500)
                 {
-                    AudioManager.instance.Stop("Typewriter");
+                    AudioManager.instance.Stop("Type");
                     placeHolder.text = inputs[4];
                     fixText.SetActive(true);
                     yield return new WaitUntil(() => rightWord == true);
-                    AudioManager.instance.Play("Typewriter");
+                    AudioManager.instance.Play("Type");
                     rightWord = false;
                 }
 
 
                 if (i == 600)
                 {
-                    AudioManager.instance.Stop("Typewriter");
+                    AudioManager.instance.Stop("Type");
                     placeHolder.text = inputs[5];
                     fixText.SetActive(true);
                     yield return new WaitUntil(() => rightWord == true);
-                    AudioManager.instance.Play("Typewriter");
+                    AudioManager.instance.Play("Type");
                     rightWord = false;
                 }
                 if (i == 700)
                 {
-                    AudioManager.instance.Stop("Typewriter");
+                    AudioManager.instance.Stop("Type");
                     placeHolder.text = inputs[6];
                     fixText.SetActive(true);
                     yield return new WaitUntil(() => rightWord == true);
-                    AudioManager.instance.Play("Typewriter");
+                    AudioManager.instance.Play("Type");
                     rightWord = false;
                 }
                 if (i == 800)
                 {
-                    AudioManager.instance.Stop("Typewriter");
+                    AudioManager.instance.Stop("Type");
                     placeHolder.text = inputs[7];
                     fixText.SetActive(true);
                     yield return new WaitUntil(() => rightWord == true);
-                    AudioManager.instance.Play("Typewriter");
+                    AudioManager.instance.Play("Type");
                     rightWord = false;
                 }
                 if (i == 900)
                 {
-                    AudioManager.instance.Stop("Typewriter");
+                    AudioManager.instance.Stop("Type");
                     placeHolder.text = inputs[8];
                     fixText.SetActive(true);
                     yield return new WaitUntil(() => rightWord == true);
-                    AudioManager.instance.Play("Typewriter");
+                    AudioManager.instance.Play("Type");
                     rightWord = false;
                 }
                 if (i == 1000)
                 {
-                    AudioManager.instance.Stop("Typewriter");
+                    AudioManager.instance.Stop("Type");
                     placeHolder.text = inputs[9];
                     fixText.SetActive(true);
                     yield return new WaitUntil(() => rightWord == true);
-                    AudioManager.instance.Play("Typewriter");
+                    AudioManager.instance.Play("Type");
                     rightWord = false;
                 }
                 if (i == 1100)
                 {
-                    AudioManager.instance.Stop("Typewriter");
+                    AudioManager.instance.Stop("Type");
                     placeHolder.text = inputs[10];
                     fixText.SetActive(true);
                     yield return new WaitUntil(() => rightWord == true);
-                    AudioManager.instance.Play("Typewriter");
+                    AudioManager.instance.Play("Type");
                     rightWord = false;
                 }
                 if (i == 1200)
                 {
-                    AudioManager.instance.Stop("Typewriter");
+                    AudioManager.instance.Stop("Type");
                     placeHolder.text = inputs[11];
                     fixText.SetActive(true);
                     yield return new WaitUntil(() => rightWord == true);
-                    AudioManager.instance.Play("Typewriter");
+                    AudioManager.instance.Play("Type");
                     rightWord = false;
                 }
                 if (i == 1300)
                 {
-                    AudioManager.instance.Stop("Typewriter");
+                    AudioManager.instance.Stop("Type");
                     placeHolder.text = inputs[12];
                     fixText.SetActive(true);
                     yield return new WaitUntil(() => rightWord == true);
-                    AudioManager.instance.Play("Typewriter");
+                    AudioManager.instance.Play("Type");
                     rightWord = false;
                 }
                 if (i == 1400)
                 {
-                    AudioManager.instance.Stop("Typewriter");
+                    AudioManager.instance.Stop("Type");
                     placeHolder.text = inputs[13];
                     fixText.SetActive(true);
                     yield return new WaitUntil(() => rightWord == true);
-                    AudioManager.instance.Play("Typewriter");
+                    AudioManager.instance.Play("Type");
                     rightWord = false;
                 }
                 if (i == 1500)
                 {
-                    AudioManager.instance.Stop("Typewriter");
+                    AudioManager.instance.Stop("Type");
                     placeHolder.text = inputs[14];
                     fixText.SetActive(true);
                     yield return new WaitUntil(() => rightWord == true);
-                    AudioManager.instance.Play("Typewriter");
+                    AudioManager.instance.Play("Type");
                     rightWord = false;
                 }
             }

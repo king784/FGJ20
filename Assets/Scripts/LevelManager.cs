@@ -85,8 +85,11 @@ public class LevelManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        //AudioManager.instance.StopAll();
+
         if (scene.name == "OverWorld" && LevelNames.Contains(currentLevel))
         {
+    
             checkFixedGlitches();
             playerPositionBeforeGlitch.x += 8.0f;
             GameObject.FindGameObjectWithTag("Player").transform.position = playerPositionBeforeGlitch;

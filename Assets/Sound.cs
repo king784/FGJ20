@@ -7,6 +7,7 @@ using UnityEngine.Audio;
 public class Sound
 {
     public string name;
+    public bool playOnAwake;
 
     public AudioClip clip;
 
