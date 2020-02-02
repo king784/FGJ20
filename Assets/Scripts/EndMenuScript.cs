@@ -17,12 +17,13 @@ public class EndMenuScript : MonoBehaviour
 
     public void ReturnToMenu()
     {
-        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+        LevelManager.LevelMaster.GoToLevel("MainMenu");
     }
 
     public void ExitGame()
     {
-        Application.Quit();
+        FindObjectOfType<AudioManager>().Play("Buzz");
+        //Application.Quit();
     }
 
 }
