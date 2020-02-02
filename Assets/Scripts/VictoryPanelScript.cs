@@ -7,7 +7,14 @@ public class VictoryPanelScript : MonoBehaviour
 {
     void OnEnable()
     {
-        StartCoroutine(BackToOverworld());   
+        if(SceneManager.GetActiveScene().name == "Tarita test")
+        {
+            StartCoroutine(GoToMoras());
+        }
+        else
+        {
+            StartCoroutine(BackToOverworld());
+        }   
     }
 
     IEnumerator BackToOverworld()
@@ -15,5 +22,12 @@ public class VictoryPanelScript : MonoBehaviour
         yield return new WaitForSeconds(3.0f);
         LevelManager.LevelMaster.ClearGlitchedWorld(SceneManager.GetActiveScene().name);
         LevelManager.LevelMaster.GoToLevel("OverWorld");
+    }
+
+    IEnumerator GoToMoras()
+    {
+        yield return new WaitForSeconds(3.0f);
+        LevelManager.LevelMaster.ClearGlitchedWorld(SceneManager.GetActiveScene().name);
+        LevelManager.LevelMaster.GoToLevel("RikunScene");
     }
 }

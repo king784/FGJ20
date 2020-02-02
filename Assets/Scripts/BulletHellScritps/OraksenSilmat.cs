@@ -8,6 +8,7 @@ public class OraksenSilmat : MonoBehaviour
     int maxRnd = 5;
     int posRnd;
 
+
     LineRenderer lineRenderer;
     public Transform[] laserHits;
 
@@ -76,4 +77,6 @@ public class OraksenSilmat : MonoBehaviour
         lineRenderer.enabled = false;
         rnd = Random.Range(0, maxRnd);
     }
+
+    
 }
